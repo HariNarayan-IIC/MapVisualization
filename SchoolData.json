@@ -1,0 +1,218 @@
+[
+  {
+    "ID": "IN-AN",
+    "State": "Andaman and Nicobar Islands",
+    "% of Schools having Drinking Water Facility within School Premises": 100,
+    "Gross Enrolment Ratio": "0.03%"
+  },
+  {
+    "ID": "IN-AP",
+    "State": "Andhra Pradesh",
+    "% of Schools having Drinking Water Facility within School Premises": 84.29,
+    "Gross Enrolment Ratio": "3.11%"
+  },
+  {
+    "ID": "IN-AR",
+    "State": "Arunachal Pradesh",
+    "% of Schools having Drinking Water Facility within School Premises": 72.53,
+    "Gross Enrolment Ratio": "0.13%"
+  },
+  {
+    "ID": "IN-AS",
+    "State": "Assam",
+    "% of Schools having Drinking Water Facility within School Premises": 96.92,
+    "Gross Enrolment Ratio": "2.84%"
+  },
+  {
+    "ID": "IN-BR",
+    "State": "Bihar",
+    "% of Schools having Drinking Water Facility within School Premises": 99.73,
+    "Gross Enrolment Ratio": "10.36%"
+  },
+  {
+    "ID": "IN-CH",
+    "State": "Chandigarh",
+    "% of Schools having Drinking Water Facility within School Premises": 100,
+    "Gross Enrolment Ratio": "0.10%"
+  },
+  {
+    "ID": "IN-CT",
+    "State": "Chhattisgarh",
+    "% of Schools having Drinking Water Facility within School Premises": 99.85,
+    "Gross Enrolment Ratio": "2.26%"
+  },
+  {
+    "ID": "IN-DD",
+    "State": "Daman and Diu",
+    "% of Schools having Drinking Water Facility within School Premises": 100,
+    "Gross Enrolment Ratio": "0.05%"
+  },
+  {
+    "ID": "IN-DL",
+    "State": "Delhi",
+    "% of Schools having Drinking Water Facility within School Premises": 100,
+    "Gross Enrolment Ratio": "1.72%"
+  },
+  {
+    "ID": "IN-GA",
+    "State": "Goa",
+    "% of Schools having Drinking Water Facility within School Premises": 100,
+    "Gross Enrolment Ratio": "0.11%"
+  },
+  {
+    "ID": "IN-GJ",
+    "State": "Gujarat",
+    "% of Schools having Drinking Water Facility within School Premises": 99.96,
+    "Gross Enrolment Ratio": "4.35%"
+  },
+  {
+    "ID": "IN-HR",
+    "State": "Haryana",
+    "% of Schools having Drinking Water Facility within School Premises": 99.42,
+    "Gross Enrolment Ratio": "2.28%"
+  },
+  {
+    "ID": "IN-HP",
+    "State": "Himachal Pradesh",
+    "% of Schools having Drinking Water Facility within School Premises": 99.94,
+    "Gross Enrolment Ratio": "0.54%"
+  },
+  {
+    "ID": "IN-JK",
+    "State": "Jammu and Kashmir",
+    "% of Schools having Drinking Water Facility within School Premises": 96.58,
+    "Gross Enrolment Ratio": "1.02%"
+  },
+  {
+    "ID": "IN-JH",
+    "State": "Jharkhand",
+    "% of Schools having Drinking Water Facility within School Premises": 98.05,
+    "Gross Enrolment Ratio": "3.01%"
+  },
+  {
+    "ID": "IN-KA",
+    "State": "Karnataka",
+    "% of Schools having Drinking Water Facility within School Premises": 99.55,
+    "Gross Enrolment Ratio": "4.56%"
+  },
+  {
+    "ID": "IN-KL",
+    "State": "Kerala",
+    "% of Schools having Drinking Water Facility within School Premises": 99.34,
+    "Gross Enrolment Ratio": "2.42%"
+  },
+  {
+    "ID": "IN-DN",
+    "State": "Ladakh",
+    "% of Schools having Drinking Water Facility within School Premises": 95.63,
+    "Gross Enrolment Ratio": "0.02%"
+  },
+  {
+    "ID": "IN-LD",
+    "State": "Lakshadweep",
+    "% of Schools having Drinking Water Facility within School Premises": 100,
+    "Gross Enrolment Ratio": "0.01%"
+  },
+  {
+    "ID": "IN-MP",
+    "State": "Madhya Pradesh",
+    "% of Schools having Drinking Water Facility within School Premises": 98.65,
+    "Gross Enrolment Ratio": "6.10%"
+  },
+  {
+    "ID": "IN-MH",
+    "State": "Maharashtra",
+    "% of Schools having Drinking Water Facility within School Premises": 99.13,
+    "Gross Enrolment Ratio": "8.52%"
+  },
+  {
+    "ID": "IN-MN",
+    "State": "Manipur",
+    "% of Schools having Drinking Water Facility within School Premises": 97.15,
+    "Gross Enrolment Ratio": "0.26%"
+  },
+  {
+    "ID": "IN-ML",
+    "State": "Meghalaya",
+    "% of Schools having Drinking Water Facility within School Premises": 40.01,
+    "Gross Enrolment Ratio": "0.44%"
+  },
+  {
+    "ID": "IN-MZ",
+    "State": "Mizoram",
+    "% of Schools having Drinking Water Facility within School Premises": 88.7,
+    "Gross Enrolment Ratio": "0.12%"
+  },
+  {
+    "ID": "IN-NL",
+    "State": "Nagaland",
+    "% of Schools having Drinking Water Facility within School Premises": 62.58,
+    "Gross Enrolment Ratio": "0.17%"
+  },
+  {
+    "ID": "IN-OR",
+    "State": "Odisha",
+    "% of Schools having Drinking Water Facility within School Premises": 99.88,
+    "Gross Enrolment Ratio": "2.86%"
+  },
+  {
+    "ID": "IN-PY",
+    "State": "Puducherry",
+    "% of Schools having Drinking Water Facility within School Premises": 100,
+    "Gross Enrolment Ratio": "0.10%"
+  },
+  {
+    "ID": "IN-PB",
+    "State": "Punjab",
+    "% of Schools having Drinking Water Facility within School Premises": 100,
+    "Gross Enrolment Ratio": "2.32%"
+  },
+  {
+    "ID": "IN-RJ",
+    "State": "Rajasthan",
+    "% of Schools having Drinking Water Facility within School Premises": 96.94,
+    "Gross Enrolment Ratio": "6.66%"
+  },
+  {
+    "ID": "IN-SK",
+    "State": "Sikkim",
+    "% of Schools having Drinking Water Facility within School Premises": 99.53,
+    "Gross Enrolment Ratio": "0.05%"
+  },
+  {
+    "ID": "IN-TN",
+    "State": "Tamil Nadu",
+    "% of Schools having Drinking Water Facility within School Premises": 100,
+    "Gross Enrolment Ratio": "4.84%"
+  },
+  {
+    "ID": "IN-TG",
+    "State": "Telangana",
+    "% of Schools having Drinking Water Facility within School Premises": 93.92,
+    "Gross Enrolment Ratio": "2.61%"
+  },
+  {
+    "ID": "IN-TR",
+    "State": "Tripura",
+    "% of Schools having Drinking Water Facility within School Premises": 81.27,
+    "Gross Enrolment Ratio": "0.27%"
+  },
+  {
+    "ID": "IN-UP",
+    "State": "Uttar Pradesh",
+    "% of Schools having Drinking Water Facility within School Premises": 98.82,
+    "Gross Enrolment Ratio": "17.79%"
+  },
+  {
+    "ID": "IN-UT",
+    "State": "Uttarakhand",
+    "% of Schools having Drinking Water Facility within School Premises": 93.97,
+    "Gross Enrolment Ratio": "0.92%"
+  },
+  {
+    "ID": "IN-WB",
+    "State": "West Bengal",
+    "% of Schools having Drinking Water Facility within School Premises": 99.63,
+    "Gross Enrolment Ratio": "7.06%"
+  }
+]

@@ -1,0 +1,48 @@
+#title {
+font-size: 25px;
+fill: black;
+}
+
+.land {
+fill: #FFF8F4;
+stroke: black;
+stroke-width: 1;
+stroke-miterlimit: 1;
+}
+
+.colour0 {fill: #FD5F00;}
+.colour1 {fill: #FF7D2F;}
+.colour2 {fill: #FFA66F;}
+.colour3 {fill: #FFCDAE;}
+.colour4 {fill: #FEE8DB;}
+.colour5 {fill: #FFF8F4;}
+
+path:hover{
+opacity: 0.5;
+}
+
+
+.tooltip1 {
+font-size: 16px;
+font-weight: bold;
+}
+
+
+
+.tooltip_bg {
+fill: white;
+stroke: black;
+stroke-width: 1;
+opacity: 0.85;
+}
+
+.label{
+    font-size: 17px;
+}
+
+#border {
+    fill : none;
+    stroke : black;
+    stroke-width : 1;
+}
+
