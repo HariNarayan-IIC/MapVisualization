@@ -24,7 +24,7 @@
             .then(response => response.json())
             .then(data => {
                 gobar = data;
-                console.log(data[0].State); // JSON data from the file
+                // console.log(data[0].State); // JSON data from the file
             })
             .catch(error => console.error('Error fetching JSON:', error));
 
@@ -50,8 +50,20 @@
 
                 elt.onmouseover = function (e) {
                     // showTooltip(e, capitalizeFirstLetter(e.currentTarget.getAttribute(gobar[i].State)));
-                    showTooltip(e, gobar[i].State);
-                    console.log(i)
+                    // console.log(e.currentTarget.getAttribute("id"))
+                    let details = gobar.find(item => item.id === e.currentTarget.getAttribute("id"))
+                    showTooltip(
+                        e, 
+                        details.state,
+                        details.drinkingWater,
+                        details.grossEnrollement,
+                        details.dropOut,
+                        details.computers,
+                        details.electricity,
+                        details.boysToilet,
+                        details.girlsToilet
+                    );
+                    
                 };
 
                 elt.onmouseout = function (e) {
@@ -77,46 +89,46 @@
             country.setAttributeNS(null, 'class', newClass);
         }
 
-        function showTooltip(evt, mouseovertext) {
+        function showTooltip(evt, state, drinkingWater, grossEnrollement, dropOut, computers, electricity, boysToilet, girlsToilet) {
             tooltip1.setAttributeNS(null, "x", evt.clientX + 18);
             tooltip1.setAttributeNS(null, "y", evt.clientY + 32);
             // tooltip.firstChild.data = mouseovertext;
-            tooltip1.firstChild.data = mouseovertext;
+            tooltip1.firstChild.data = state;
             tooltip1.setAttributeNS(null, "visibility", "visible");
 
             tooltip2.setAttributeNS(null, "x", evt.clientX + 18);
             tooltip2.setAttributeNS(null, "y", evt.clientY + 52);
-            tooltip2.firstChild.data = "Schools with Drinking Water Facility: %";
+            tooltip2.firstChild.data = "Schools with Drinking Water Facility: "+drinkingWater+"%";
             tooltip2.setAttributeNS(null, "visibility", "visible");
 
             tooltip3.setAttributeNS(null, "x", evt.clientX + 18);
             tooltip3.setAttributeNS(null, "y", evt.clientY + 72);
-            tooltip3.firstChild.data = "Gross Enrolment Ratio: ";
+            tooltip3.firstChild.data = "Gross Enrolment Ratio: "+grossEnrollement;
             tooltip3.setAttributeNS(null, "visibility", "visible");
 
             tooltip4.setAttributeNS(null, "x", evt.clientX + 18);
             tooltip4.setAttributeNS(null, "y", evt.clientY + 92);
-            tooltip4.firstChild.data = "Drop-out Rate: ";
+            tooltip4.firstChild.data = "Drop-out Rate: " +dropOut;
             tooltip4.setAttributeNS(null, "visibility", "visible");
 
             tooltip5.setAttributeNS(null, "x", evt.clientX + 18);
             tooltip5.setAttributeNS(null, "y", evt.clientY + 112);
-            tooltip5.firstChild.data = "Schools with Computers: %";
+            tooltip5.firstChild.data = "Schools with Computers: " +computers+ "%";
             tooltip5.setAttributeNS(null, "visibility", "visible");
 
             tooltip6.setAttributeNS(null, "x", evt.clientX + 18);
             tooltip6.setAttributeNS(null, "y", evt.clientY + 132);
-            tooltip6.firstChild.data = "Schools with Electricity: %";
+            tooltip6.firstChild.data = "Schools with Electricity: " +electricity+ "%";
             tooltip6.setAttributeNS(null, "visibility", "visible");
 
             tooltip7.setAttributeNS(null, "x", evt.clientX + 18);
             tooltip7.setAttributeNS(null, "y", evt.clientY + 152);
-            tooltip7.firstChild.data = "Schools with Boys' Toilets:";
+            tooltip7.firstChild.data = "Schools with Boys' Toilets:" +boysToilet+ "%";
             tooltip7.setAttributeNS(null, "visibility", "visible");
 
             tooltip8.setAttributeNS(null, "x", evt.clientX + 18);
             tooltip8.setAttributeNS(null, "y", evt.clientY + 172);
-            tooltip8.firstChild.data = "Schools with Girls' Toilets: ";
+            tooltip8.firstChild.data = "Schools with Girls' Toilets: " +girlsToilet+ "";
             tooltip8.setAttributeNS(null, "visibility", "visible");
 
             length = tooltip2.getComputedTextLength();

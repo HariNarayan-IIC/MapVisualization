@@ -1,218 +1,398 @@
 [
   {
-    "ID": "IN-AN",
-    "State": "Andaman and Nicobar Islands",
-    "% of Schools having Drinking Water Facility within School Premises": 100,
-    "Gross Enrolment Ratio": "0.03%"
+    "id": "IN-AN",
+    "state": "Andaman and Nicobar Islands",
+    "drinkingWater": "100",
+    "grossEnrollement": "0.03%",
+    "dropOut": "",
+    "computers": "62.83",
+    "electricity": "92.33",
+    "boysToilet": "99.28",
+    "girlsToilet": ""
   },
   {
-    "ID": "IN-AP",
-    "State": "Andhra Pradesh",
-    "% of Schools having Drinking Water Facility within School Premises": 84.29,
-    "Gross Enrolment Ratio": "3.11%"
+    "id": "IN-AP",
+    "state": "Andhra Pradesh",
+    "drinkingWater": "84.29",
+    "grossEnrollement": "3.11%",
+    "dropOut": "",
+    "computers": "38.54",
+    "electricity": "95.06",
+    "boysToilet": "85.55",
+    "girlsToilet": ""
   },
   {
-    "ID": "IN-AR",
-    "State": "Arunachal Pradesh",
-    "% of Schools having Drinking Water Facility within School Premises": 72.53,
-    "Gross Enrolment Ratio": "0.13%"
+    "id": "IN-AR",
+    "state": "Arunachal Pradesh",
+    "drinkingWater": "72.53",
+    "grossEnrollement": "0.13%",
+    "dropOut": "",
+    "computers": "26.61",
+    "electricity": "57.28",
+    "boysToilet": "91.22",
+    "girlsToilet": ""
   },
   {
-    "ID": "IN-AS",
-    "State": "Assam",
-    "% of Schools having Drinking Water Facility within School Premises": 96.92,
-    "Gross Enrolment Ratio": "2.84%"
+    "id": "IN-AS",
+    "state": "Assam",
+    "drinkingWater": "96.92",
+    "grossEnrollement": "2.84%",
+    "dropOut": "",
+    "computers": "16.22",
+    "electricity": "60.02",
+    "boysToilet": "84.92",
+    "girlsToilet": ""
   },
   {
-    "ID": "IN-BR",
-    "State": "Bihar",
-    "% of Schools having Drinking Water Facility within School Premises": 99.73,
-    "Gross Enrolment Ratio": "10.36%"
+    "id": "IN-BR",
+    "state": "Bihar",
+    "drinkingWater": "99.73",
+    "grossEnrollement": "10.36%",
+    "dropOut": "",
+    "computers": "14.49",
+    "electricity": "86.54",
+    "boysToilet": "97.85",
+    "girlsToilet": ""
   },
   {
-    "ID": "IN-CH",
-    "State": "Chandigarh",
-    "% of Schools having Drinking Water Facility within School Premises": 100,
-    "Gross Enrolment Ratio": "0.10%"
+    "id": "IN-CH",
+    "state": "Chandigarh",
+    "drinkingWater": "100",
+    "grossEnrollement": "0.10%",
+    "dropOut": "",
+    "computers": "99.57",
+    "electricity": "100",
+    "boysToilet": "100",
+    "girlsToilet": ""
   },
   {
-    "ID": "IN-CT",
-    "State": "Chhattisgarh",
-    "% of Schools having Drinking Water Facility within School Premises": 99.85,
-    "Gross Enrolment Ratio": "2.26%"
+    "id": "IN-CT",
+    "state": "Chhattisgarh",
+    "drinkingWater": "99.85",
+    "grossEnrollement": "2.26%",
+    "dropOut": "",
+    "computers": "84.6",
+    "electricity": "94.24",
+    "boysToilet": "98.08",
+    "girlsToilet": ""
   },
   {
-    "ID": "IN-DD",
-    "State": "Daman and Diu",
-    "% of Schools having Drinking Water Facility within School Premises": 100,
-    "Gross Enrolment Ratio": "0.05%"
+    "id": "IN-DD",
+    "state": "Daman and Diu",
+    "drinkingWater": "100",
+    "grossEnrollement": "0.05%",
+    "dropOut": "",
+    "computers": "89.77",
+    "electricity": "100",
+    "boysToilet": "100",
+    "girlsToilet": ""
   },
   {
-    "ID": "IN-DL",
-    "State": "Delhi",
-    "% of Schools having Drinking Water Facility within School Premises": 100,
-    "Gross Enrolment Ratio": "1.72%"
+    "id": "IN-DL",
+    "state": "Delhi",
+    "drinkingWater": "100",
+    "grossEnrollement": "1.72%",
+    "dropOut": "",
+    "computers": "100",
+    "electricity": "100",
+    "boysToilet": "100",
+    "girlsToilet": ""
   },
   {
-    "ID": "IN-GA",
-    "State": "Goa",
-    "% of Schools having Drinking Water Facility within School Premises": 100,
-    "Gross Enrolment Ratio": "0.11%"
+    "id": "IN-GA",
+    "state": "Goa",
+    "drinkingWater": "100",
+    "grossEnrollement": "0.11%",
+    "dropOut": "",
+    "computers": "51.59",
+    "electricity": "100",
+    "boysToilet": "100",
+    "girlsToilet": ""
   },
   {
-    "ID": "IN-GJ",
-    "State": "Gujarat",
-    "% of Schools having Drinking Water Facility within School Premises": 99.96,
-    "Gross Enrolment Ratio": "4.35%"
+    "id": "IN-GJ",
+    "state": "Gujarat",
+    "drinkingWater": "99.96",
+    "grossEnrollement": "4.35%",
+    "dropOut": "",
+    "computers": "93.03",
+    "electricity": "99.94",
+    "boysToilet": "99.27",
+    "girlsToilet": ""
   },
   {
-    "ID": "IN-HR",
-    "State": "Haryana",
-    "% of Schools having Drinking Water Facility within School Premises": 99.42,
-    "Gross Enrolment Ratio": "2.28%"
+    "id": "IN-HR",
+    "state": "Haryana",
+    "drinkingWater": "99.42",
+    "grossEnrollement": "2.28%",
+    "dropOut": "",
+    "computers": "55.2",
+    "electricity": "98.96",
+    "boysToilet": "98.74",
+    "girlsToilet": ""
   },
   {
-    "ID": "IN-HP",
-    "State": "Himachal Pradesh",
-    "% of Schools having Drinking Water Facility within School Premises": 99.94,
-    "Gross Enrolment Ratio": "0.54%"
+    "id": "IN-HP",
+    "state": "Himachal Pradesh",
+    "drinkingWater": "99.94",
+    "grossEnrollement": "0.54%",
+    "dropOut": "",
+    "computers": "34.94",
+    "electricity": "98.15",
+    "boysToilet": "98.72",
+    "girlsToilet": ""
   },
   {
-    "ID": "IN-JK",
-    "State": "Jammu and Kashmir",
-    "% of Schools having Drinking Water Facility within School Premises": 96.58,
-    "Gross Enrolment Ratio": "1.02%"
+    "id": "IN-JK",
+    "state": "Jammu and Kashmir",
+    "drinkingWater": "96.58",
+    "grossEnrollement": "1.02%",
+    "dropOut": "",
+    "computers": "28.31",
+    "electricity": "73.38",
+    "boysToilet": "88.82",
+    "girlsToilet": ""
   },
   {
-    "ID": "IN-JH",
-    "State": "Jharkhand",
-    "% of Schools having Drinking Water Facility within School Premises": 98.05,
-    "Gross Enrolment Ratio": "3.01%"
+    "id": "IN-JH",
+    "state": "Jharkhand",
+    "drinkingWater": "98.05",
+    "grossEnrollement": "3.01%",
+    "dropOut": "",
+    "computers": "79.32",
+    "electricity": "94.65",
+    "boysToilet": "98.31",
+    "girlsToilet": ""
   },
   {
-    "ID": "IN-KA",
-    "State": "Karnataka",
-    "% of Schools having Drinking Water Facility within School Premises": 99.55,
-    "Gross Enrolment Ratio": "4.56%"
+    "id": "IN-KA",
+    "state": "Karnataka",
+    "drinkingWater": "99.55",
+    "grossEnrollement": "4.56%",
+    "dropOut": "",
+    "computers": "49.05",
+    "electricity": "98.96",
+    "boysToilet": "97.18",
+    "girlsToilet": ""
   },
   {
-    "ID": "IN-KL",
-    "State": "Kerala",
-    "% of Schools having Drinking Water Facility within School Premises": 99.34,
-    "Gross Enrolment Ratio": "2.42%"
+    "id": "IN-KL",
+    "state": "Kerala",
+    "drinkingWater": "99.34",
+    "grossEnrollement": "2.42%",
+    "dropOut": "",
+    "computers": "96.39",
+    "electricity": "99.38",
+    "boysToilet": "99.02",
+    "girlsToilet": ""
   },
   {
-    "ID": "IN-DN",
-    "State": "Ladakh",
-    "% of Schools having Drinking Water Facility within School Premises": 95.63,
-    "Gross Enrolment Ratio": "0.02%"
+    "id": "IN-DN",
+    "state": "Ladakh",
+    "drinkingWater": "95.63",
+    "grossEnrollement": "0.02%",
+    "dropOut": "",
+    "computers": "34.85",
+    "electricity": "88.92",
+    "boysToilet": "96.12",
+    "girlsToilet": ""
   },
   {
-    "ID": "IN-LD",
-    "State": "Lakshadweep",
-    "% of Schools having Drinking Water Facility within School Premises": 100,
-    "Gross Enrolment Ratio": "0.01%"
+    "id": "IN-LD",
+    "state": "Lakshadweep",
+    "drinkingWater": "100",
+    "grossEnrollement": "0.01%",
+    "dropOut": "",
+    "computers": "100",
+    "electricity": "100",
+    "boysToilet": "100",
+    "girlsToilet": ""
   },
   {
-    "ID": "IN-MP",
-    "State": "Madhya Pradesh",
-    "% of Schools having Drinking Water Facility within School Premises": 98.65,
-    "Gross Enrolment Ratio": "6.10%"
+    "id": "IN-MP",
+    "state": "Madhya Pradesh",
+    "drinkingWater": "98.65",
+    "grossEnrollement": "6.10%",
+    "dropOut": "",
+    "computers": "16.69",
+    "electricity": "74.29",
+    "boysToilet": "97.73",
+    "girlsToilet": ""
   },
   {
-    "ID": "IN-MH",
-    "State": "Maharashtra",
-    "% of Schools having Drinking Water Facility within School Premises": 99.13,
-    "Gross Enrolment Ratio": "8.52%"
+    "id": "IN-MH",
+    "state": "Maharashtra",
+    "drinkingWater": "99.13",
+    "grossEnrollement": "8.52%",
+    "dropOut": "",
+    "computers": "76.24",
+    "electricity": "95.38",
+    "boysToilet": "96.88",
+    "girlsToilet": ""
   },
   {
-    "ID": "IN-MN",
-    "State": "Manipur",
-    "% of Schools having Drinking Water Facility within School Premises": 97.15,
-    "Gross Enrolment Ratio": "0.26%"
+    "id": "IN-MN",
+    "state": "Manipur",
+    "drinkingWater": "97.15",
+    "grossEnrollement": "0.26%",
+    "dropOut": "",
+    "computers": "33.29",
+    "electricity": "66.15",
+    "boysToilet": "87.89",
+    "girlsToilet": ""
   },
   {
-    "ID": "IN-ML",
-    "State": "Meghalaya",
-    "% of Schools having Drinking Water Facility within School Premises": 40.01,
-    "Gross Enrolment Ratio": "0.44%"
+    "id": "IN-ML",
+    "state": "Meghalaya",
+    "drinkingWater": "40.01",
+    "grossEnrollement": "0.44%",
+    "dropOut": "",
+    "computers": "14.67",
+    "electricity": "24.38",
+    "boysToilet": "85.08",
+    "girlsToilet": ""
   },
   {
-    "ID": "IN-MZ",
-    "State": "Mizoram",
-    "% of Schools having Drinking Water Facility within School Premises": 88.7,
-    "Gross Enrolment Ratio": "0.12%"
+    "id": "IN-MZ",
+    "state": "Mizoram",
+    "drinkingWater": "88.7",
+    "grossEnrollement": "0.12%",
+    "dropOut": "",
+    "computers": "51.44",
+    "electricity": "84",
+    "boysToilet": "95.03",
+    "girlsToilet": ""
   },
   {
-    "ID": "IN-NL",
-    "State": "Nagaland",
-    "% of Schools having Drinking Water Facility within School Premises": 62.58,
-    "Gross Enrolment Ratio": "0.17%"
+    "id": "IN-NL",
+    "state": "Nagaland",
+    "drinkingWater": "62.58",
+    "grossEnrollement": "0.17%",
+    "dropOut": "",
+    "computers": "47.11",
+    "electricity": "71.68",
+    "boysToilet": "93.92",
+    "girlsToilet": ""
   },
   {
-    "ID": "IN-OR",
-    "State": "Odisha",
-    "% of Schools having Drinking Water Facility within School Premises": 99.88,
-    "Gross Enrolment Ratio": "2.86%"
+    "id": "IN-OR",
+    "state": "Odisha",
+    "drinkingWater": "99.88",
+    "grossEnrollement": "2.86%",
+    "dropOut": "",
+    "computers": "19.74",
+    "electricity": "81.29",
+    "boysToilet": "97.92",
+    "girlsToilet": ""
   },
   {
-    "ID": "IN-PY",
-    "State": "Puducherry",
-    "% of Schools having Drinking Water Facility within School Premises": 100,
-    "Gross Enrolment Ratio": "0.10%"
+    "id": "IN-PY",
+    "state": "Puducherry",
+    "drinkingWater": "100",
+    "grossEnrollement": "0.10%",
+    "dropOut": "",
+    "computers": "96.76",
+    "electricity": "100",
+    "boysToilet": "100",
+    "girlsToilet": ""
   },
   {
-    "ID": "IN-PB",
-    "State": "Punjab",
-    "% of Schools having Drinking Water Facility within School Premises": 100,
-    "Gross Enrolment Ratio": "2.32%"
+    "id": "IN-PB",
+    "state": "Punjab",
+    "drinkingWater": "100",
+    "grossEnrollement": "2.32%",
+    "dropOut": "",
+    "computers": "98.78",
+    "electricity": "100",
+    "boysToilet": "100",
+    "girlsToilet": ""
   },
   {
-    "ID": "IN-RJ",
-    "State": "Rajasthan",
-    "% of Schools having Drinking Water Facility within School Premises": 96.94,
-    "Gross Enrolment Ratio": "6.66%"
+    "id": "IN-RJ",
+    "state": "Rajasthan",
+    "drinkingWater": "96.94",
+    "grossEnrollement": "6.66%",
+    "dropOut": "",
+    "computers": "48.02",
+    "electricity": "84.94",
+    "boysToilet": "97.5",
+    "girlsToilet": ""
   },
   {
-    "ID": "IN-SK",
-    "State": "Sikkim",
-    "% of Schools having Drinking Water Facility within School Premises": 99.53,
-    "Gross Enrolment Ratio": "0.05%"
+    "id": "IN-SK",
+    "state": "Sikkim",
+    "drinkingWater": "99.53",
+    "grossEnrollement": "0.05%",
+    "dropOut": "",
+    "computers": "78.78",
+    "electricity": "99.21",
+    "boysToilet": "99.6",
+    "girlsToilet": ""
   },
   {
-    "ID": "IN-TN",
-    "State": "Tamil Nadu",
-    "% of Schools having Drinking Water Facility within School Premises": 100,
-    "Gross Enrolment Ratio": "4.84%"
+    "id": "IN-TN",
+    "state": "Tamil Nadu",
+    "drinkingWater": "100",
+    "grossEnrollement": "4.84%",
+    "dropOut": "",
+    "computers": "77.99",
+    "electricity": "100",
+    "boysToilet": "98.24",
+    "girlsToilet": ""
   },
   {
-    "ID": "IN-TG",
-    "State": "Telangana",
-    "% of Schools having Drinking Water Facility within School Premises": 93.92,
-    "Gross Enrolment Ratio": "2.61%"
+    "id": "IN-TG",
+    "state": "Telangana",
+    "drinkingWater": "93.92",
+    "grossEnrollement": "2.61%",
+    "dropOut": "",
+    "computers": "38.31",
+    "electricity": "94.12",
+    "boysToilet": "83.51",
+    "girlsToilet": ""
   },
   {
-    "ID": "IN-TR",
-    "State": "Tripura",
-    "% of Schools having Drinking Water Facility within School Premises": 81.27,
-    "Gross Enrolment Ratio": "0.27%"
+    "id": "IN-TR",
+    "state": "Tripura",
+    "drinkingWater": "81.27",
+    "grossEnrollement": "0.27%",
+    "dropOut": "",
+    "computers": "21.52",
+    "electricity": "43.96",
+    "boysToilet": "92.42",
+    "girlsToilet": ""
   },
   {
-    "ID": "IN-UP",
-    "State": "Uttar Pradesh",
-    "% of Schools having Drinking Water Facility within School Premises": 98.82,
-    "Gross Enrolment Ratio": "17.79%"
+    "id": "IN-UP",
+    "state": "Uttar Pradesh",
+    "drinkingWater": "98.82",
+    "grossEnrollement": "17.79%",
+    "dropOut": "",
+    "computers": "20.98",
+    "electricity": "81.75",
+    "boysToilet": "98.34",
+    "girlsToilet": ""
   },
   {
-    "ID": "IN-UT",
-    "State": "Uttarakhand",
-    "% of Schools having Drinking Water Facility within School Premises": 93.97,
-    "Gross Enrolment Ratio": "0.92%"
+    "id": "IN-UT",
+    "state": "Uttarakhand",
+    "drinkingWater": "93.97",
+    "grossEnrollement": "0.92%",
+    "dropOut": "",
+    "computers": "41.59",
+    "electricity": "89.68",
+    "boysToilet": "95.36",
+    "girlsToilet": ""
   },
   {
-    "ID": "IN-WB",
-    "State": "West Bengal",
-    "% of Schools having Drinking Water Facility within School Premises": 99.63,
-    "Gross Enrolment Ratio": "7.06%"
+    "id": "IN-WB",
+    "state": "West Bengal",
+    "drinkingWater": "99.63",
+    "grossEnrollement": "7.06%",
+    "dropOut": "",
+    "computers": "15.97",
+    "electricity": "96.75",
+    "boysToilet": "99.83",
+    "girlsToilet": ""
   }
 ]
