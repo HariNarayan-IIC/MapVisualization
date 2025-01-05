@@ -24,6 +24,7 @@
             .then(response => response.json())
             .then(data => {
                 gobar = data;
+                
                 // console.log(data[0].State); // JSON data from the file
             })
             .catch(error => console.error('Error fetching JSON:', error));
