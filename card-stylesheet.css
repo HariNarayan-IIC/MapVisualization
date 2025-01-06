@@ -1,9 +1,14 @@
+
+body{
+    align-items: center;
+}
+
 .container{
-    width: 100%;
     display: flex;
     flex-wrap: wrap;
     -ms-flex-align: center;
     justify-content: space-around;
+    align-items: center;
 }
 .card {
     width: 200px;
