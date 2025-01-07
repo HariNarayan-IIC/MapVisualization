@@ -1,3 +1,5 @@
+/* CSS copied for map */
+
 #title {
 font-size: 25px;
 fill: black;
@@ -46,11 +48,83 @@ opacity: 0.85;
     stroke-width : 1;
 }
 
-.row {
-    display: flex;
+/* Custom CSS starts here */
+
+body{
+    align-items: center;
+    margin: 0;
 }
 
-.control {
+svg {
+    max-width: 100%;
+    border: black solid 1px;
+    z-index: 10;
+}
+
+.tooltip1 {
+    z-index: 10;
+}
+.tooltip_bg {
+    z-index: 9;
+}
+.row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin: 0;
+    border: blue solid 2px;
+}
+
+.container {
+    margin: 0 auto;
+}
+
+.filters-container {
     display: flex;
     flex-direction: column;
+    width: 15%;
+}
+
+.map-container {
+    height: 100vh;
+}
+
+.cards-container {
+    width: 30%;
+    display: flex;
+    align-items: flex-start ;
+    flex-wrap: wrap;
+    -ms-flex-align: center;
+    justify-content: space-around;
+    align-items: center;
+}
+
+/* .column {
+    border: #FD5F00 solid 2px;
+} */
+
+.card {
+    width: 200px;
+    border: 3px solid rgb(82, 82, 82);
+    border-radius: 10px;
+    padding: 10px;
+    margin: 5px;
+    font-size: 2px;
+    background-color: rgb(235, 235, 235);
+    box-shadow: 3px 3px 5px grey;
+}
+.title {
+    display: inline-block;
+    font-weight: bold;
+    font-size: 10em;
+    text-align: center;
+    height: 50%;
+    width: 100%;
+}
+.value {
+    display: block;
+    font-weight: bolder;
+    font-size: 14em;
+    text-align: center;
+    height: 50%;
 }
