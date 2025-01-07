@@ -46,3 +46,11 @@ opacity: 0.85;
     stroke-width : 1;
 }
 
+.row {
+    display: flex;
+}
+
+.control {
+    display: flex;
+    flex-direction: column;
+}
