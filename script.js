@@ -89,10 +89,11 @@ function showTooltip(evt, state) {
     const svgRect = svg.getBoundingClientRect();
     
     // Calculate mouse position relative to the SVG canvas
-    const svgX = evt.clientX - svgRect.left;
-    const svgY = evt.clientY - svgRect.top;
-    tooltip1.setAttributeNS(null, "x", svgX + 18);
-    tooltip1.setAttributeNS(null, "y", svgY + 32);
+     svgX = evt.clientX - svgRect.left;
+     svgY = evt.clientY - svgRect.top;
+
+    tooltip1.setAttribute( "x", (svgX -20)*1.8);
+    tooltip1.setAttribute( "y", (svgY -20)*1.8);
     // tooltip.firstChild.data = mouseovertext;
     tooltip1.firstChild.data = state;
     tooltip1.setAttributeNS(null, "visibility", "visible");
@@ -134,8 +135,8 @@ function showTooltip(evt, state) {
 
     length = tooltip1.getComputedTextLength();
     tooltip_bg.setAttributeNS(null, "width", length + 40);
-    tooltip_bg.setAttributeNS(null, "x", svgX + 8);
-    tooltip_bg.setAttributeNS(null, "y", svgY + 14);
+    tooltip_bg.setAttributeNS(null, "x", (svgX -30)*1.8);
+    tooltip_bg.setAttributeNS(null, "y", (svgY -30)*1.8);
     tooltip_bg.setAttributeNS(null, "visibility", "visibile");
 }
 
