@@ -217,6 +217,40 @@ document.getElementById("girlsToilet").onclick = function() {
 }
 
 
+//script for creating Google charts//////////////////////////////////////////////////////////////////////////////////////
+// Load the Visualization API and the corechart package.
+google.charts.load('current', {'packages':['corechart']});
+
+// Set a callback to run when the Google Visualization API is loaded.
+google.charts.setOnLoadCallback(drawChart);
+
+// Callback that creates and populates a data table,
+// instantiates the pie chart, passes in the data and
+// draws it.
+function drawChart() {
+
+  // Create the data table.
+  var data = new google.visualization.DataTable();
+  data.addColumn('string', 'Class Category');
+  data.addColumn('number', 'Enrollment');
+  data.addRows([
+    ['Pre- Primary', 6885],
+    ['Primary (1 to 5)', 25964],
+    ['Upper Primary (6-8)', 17719],
+    ['Secondary (9-10)', 11810],
+    [' Higher Secondary (11-12)', 11483]
+  ]);
+
+  // Set chart options
+  var options = {'title':'Students Enrollment in All Types of Management',
+                 'is3D': true};
+
+  // Instantiate and draw our chart, passing in some options.
+  var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+  chart.draw(data, options);
+}
+
+
 
 
 // Charts testing
