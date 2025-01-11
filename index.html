@@ -59,7 +59,7 @@
         -->
         <section class="map-section">
             <!-- <div class="map-container"> -->
-            <svg viewBox="0 0 650 700" xmlns="http://www.w3.org/2000/svg" onload="init(evt)">
+            <svg id="map-svg" viewBox="0 0 650 700" xmlns="http://www.w3.org/2000/svg" onload="init(evt)">
                 <!-- <svg height="1000" width="1000" onload="init(evt)"> -->
 
                 <path id="IN-AN" title="Andaman and Nicobar Islands" class="land"
@@ -180,7 +180,6 @@
         -->
         <section class="details-section">
             <div class="cards-container">
-
                 <!-- Information Card (Multiple cards containing informaiton) -->
                 <div class="card" id="card-0">
                     <div class="title">
@@ -238,11 +237,13 @@
             </div>
 
             <!-- Chart container -->
-            
-            <div class="charts">
-                <!--Div that will hold the pie chart-->
-                <div id="chart_div" style="height: 250px; width: 500px;"></div>
 
+            <div class="charts-container">
+                <!-- Div that will hold the pie chart -->
+                <div id="pie-chart"></div> 
+
+                <!-- Div that will hold the bar chart  -->
+                <!-- <div id="barchart_div" ></div> -->
 
                 <!-- <div chart="chart-1">
                     <canvas id="bar-graph"></canvas>

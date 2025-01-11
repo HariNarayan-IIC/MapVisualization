@@ -1,49 +1,69 @@
 /* CSS copied for map */
 
 #title {
-font-size: 25px;
-fill: black;
+    font-size: 25px;
+    fill: black;
 }
 
 .land {
-fill: #FFF8F4;
-stroke: black;
-stroke-width: 1;
-stroke-miterlimit: 1;
+    fill: #FFF8F4;
+    stroke: black;
+    stroke-width: 1;
+    stroke-miterlimit: 1;
 }
 
-.colour-0 {fill: #361342;}
-.colour0 {fill: #622875;}
-.colour1 {fill: #913fac;}
-.colour2 {fill: #bc60dc;}
-.colour3 {fill: #d098e8;}
-.colour4 {fill: #e6cbf3;}
-.colour5 {fill: #f6eefb;}
+.colour-0 {
+    fill: #361342;
+}
 
-path:hover{
-opacity: 0.5;
+.colour0 {
+    fill: #622875;
+}
+
+.colour1 {
+    fill: #913fac;
+}
+
+.colour2 {
+    fill: #bc60dc;
+}
+
+.colour3 {
+    fill: #d098e8;
+}
+
+.colour4 {
+    fill: #e6cbf3;
+}
+
+.colour5 {
+    fill: #f6eefb;
+}
+
+path:hover {
+    opacity: 0.5;
 }
 
 .tooltip1 {
-font-size: 16px;
-font-weight: bold;
+    font-size: 16px;
+    font-weight: bold;
 }
 
 .tooltip_bg {
-fill: white;
-stroke: black;
-stroke-width: 1;
-opacity: 0.85;
+    fill: white;
+    stroke: black;
+    stroke-width: 1;
+    opacity: 0.85;
 }
 
-.label{
+.label {
     font-size: 17px;
 }
 
 #border {
-    fill : none;
-    stroke : black;
-    stroke-width : 1;
+    fill: none;
+    stroke: black;
+    stroke-width: 1;
 }
 
 
@@ -52,7 +72,7 @@ opacity: 0.85;
 /* ================================================================================= */
 /* Custom CSS starts here */
 
-body{
+body {
     /* align-items: center; */
     margin: 0;
     padding: 0;
@@ -62,7 +82,7 @@ body{
 
 
 /* ================================================================================= */
-header{
+header {
     padding: 10px;
     display: flex;
     align-items: center;
@@ -82,8 +102,8 @@ header{
     justify-content: space-between;
     align-items: flex-start;
     /* height: calc(100vh - 90px); */
-    height: 100vh;
-    border: solid black 2px;
+    height: auto;
+    /* border: solid black 2px; */
     margin: 0 auto;
 }
 
@@ -93,16 +113,17 @@ header{
 /* ================================================================================= */
 /* control Section Styling */
 
-#control-section{
-    display: flex;
-    flex-direction: column;
+#control-section {
+    display: block;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    /* flex-direction: column; */
     padding: 0px 5px 0px 5px;
-    width: 40%;
-    margin-right: 10px;
-    height: 100%;
+    width: 15vw;
     border-radius: 0px 30px 30px 0px;
-    /* border: #361342 solid 2px; */
-    background-color:#f5ebf9;
+    border: #361342 solid 2px;
+    background-color: #f5ebf9;
 }
 
 .filters-container {
@@ -120,24 +141,24 @@ header{
     padding-left: 35px;
     margin-bottom: 22px;
     cursor: pointer;
-    font-size: 1.1vw;
+    font-size: 1.08vw;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-  }
-  
-  /* Hide the browser's default checkbox */
-  .checkbox-label input {
+}
+
+/* Hide the browser's default checkbox */
+.checkbox-label input {
     position: absolute;
     opacity: 0;
     cursor: pointer;
     height: 0;
     width: 0;
-  }
-  
-  /* Create a custom checkbox */
-  .checkmark {
+}
+
+/* Create a custom checkbox */
+.checkmark {
     position: absolute;
     top: 0;
     left: 0;
@@ -145,32 +166,32 @@ header{
     width: 25px;
     border: 2px solid #470147;
     background-color: #eee;
-  }
-  
-  /* On mouse-over, add a grey background color */
-  .checkbox-label:hover input ~ .checkmark {
+}
+
+/* On mouse-over, add a grey background color */
+.checkbox-label:hover input~.checkmark {
     background-color: #ccc;
-  }
-  
-  /* When the checkbox is checked, add a blue background */
-  .checkbox-label input:checked ~ .checkmark {
+}
+
+/* When the checkbox is checked, add a blue background */
+.checkbox-label input:checked~.checkmark {
     background-color: #361342;
-  }
-  
-  /* Create the checkmark/indicator (hidden when not checked) */
-  .checkmark:after {
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
     content: "";
     position: absolute;
     display: none;
-  }
-  
-  /* Show the checkmark when checked */
-  .checkbox-label input:checked ~ .checkmark:after {
+}
+
+/* Show the checkmark when checked */
+.checkbox-label input:checked~.checkmark:after {
     display: block;
-  }
-  
-  /* Style the checkmark/indicator */
-  .checkbox-label .checkmark:after {
+}
+
+/* Style the checkmark/indicator */
+.checkbox-label .checkmark:after {
     left: 9px;
     top: 5px;
     width: 5px;
@@ -180,7 +201,7 @@ header{
     -webkit-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
-  }
+}
 
 /* utility styling */
 .h2-header {
@@ -194,23 +215,24 @@ header{
 /* ================================================================================= */
 /* Map Section Styling */
 .map-section {
-    width: auto;
+    width: 50vw;
     display: block;
     position: sticky;
     top: 0;
     height: 90%;
     /* border: black solid 2px; */
     /* height: 100%; */
+    color: #bcb9b9;
 }
 
-svg {
-    width: auto; 
+#map-svg {
+    width: auto;
     height: 100%;
     cursor: default;
     margin: 8px;
 }
 
-#map-title{
+#map-title {
     font-size: 1.8rem;
     font-weight: bold;
 }
@@ -218,6 +240,7 @@ svg {
 .tooltip1 {
     z-index: 10;
 }
+
 .tooltip_bg {
     z-index: 9;
 }
@@ -228,13 +251,17 @@ svg {
 /* ================================================================================= */
 /* Card Section Styling */
 .details-section {
-    width: auto;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    width: 40vw;
     height: 100%;
-    overflow: auto;
+    overflow-anchor: auto;
 }
+
 .cards-container {
     display: flex;
-    align-items: flex-start ;
+    align-items: flex-start;
     flex-wrap: wrap;
     -ms-flex-align: center;
     justify-content: space-around;
@@ -252,7 +279,7 @@ svg {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 200px;
+    width: 14vw;
     border: 2px solid rgb(255 255 255);
     border-radius: 10px;
     padding: 10px;
@@ -291,16 +318,8 @@ svg {
     flex-wrap: wrap;
 }
 
-
-/* Bar graph */
-#bar-graph {
-    border: #361342 solid 2px;
-}
-/* Histogram */
-#histogram {
-    border: #361342 solid 2px;
-}
-/* Pie-chart */
 #pie-chart {
-    border: #361342 solid 2px;
+    display: flex;
+    border: 2px solid #361342;
+    justify-content: center;
 }
