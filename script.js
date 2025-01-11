@@ -10,6 +10,8 @@ var ids = ['IN-AN', 'IN-AP', 'IN-AR', 'IN-AS', 'IN-BR', 'IN-CH', 'IN-CT', 'IN-DD
     'IN-MZ', 'IN-NL', 'IN-OR', 'IN-PB', 'IN-PY', 'IN-RJ', 'IN-SK', 'IN-TG', 'IN-TN', 'IN-TR',
     'IN-UP', 'IN-UT', 'IN-WB'];
 
+var pp, p, up, s, hs = 0;
+
 let schoolData;
 fetch('SchoolData.json')
     .then(response => response.json())
@@ -53,6 +55,7 @@ function init(evt) {
 
         elt.onclick = function (e) {
             let details = schoolData.find(item => item.id === e.currentTarget.getAttribute("id"))
+            document.getElementById("state_title").innerHTML = details.state;
             showDataInCards(
                 details.drinkingWater,
                 details.grossEnrollement,
@@ -61,6 +64,14 @@ function init(evt) {
                 details.boysToilet,
                 details.girlsToilet
             )
+            pp = Number(details.Pre_Primary);
+            console.log(pp);
+            p = Number(details.Primary);
+            up = Number(details.Upper_Primary);
+            s = Number(details.Secondary);
+            hs = Number(details.Higher_Secondary);
+            google.charts.load('current', { 'packages': ['corechart'] });
+            google.charts.setOnLoadCallback(drawChart);
         };
     }
 
@@ -234,11 +245,11 @@ function drawChart() {
     data.addColumn('string', 'Class Category');
     data.addColumn('number', 'Enrollment');
     data.addRows([
-        ['Pre- Primary', 6885],
-        ['Primary (1 to 5)', 25964],
-        ['Upper Primary (6-8)', 17719],
-        ['Secondary (9-10)', 11810],
-        [' Higher Secondary (11-12)', 11483]
+        ['Pre- Primary', pp],
+        ['Primary (1 to 5)', p],
+        ['Upper Primary (6-8)', up],
+        ['Secondary (9-10)', s],
+        [' Higher Secondary (11-12)', hs]
     ]);
 
     // Set chart options
