@@ -100,11 +100,11 @@ function showTooltip(evt, state) {
     const svgRect = svg.getBoundingClientRect();
 
     // Calculate mouse position relative to the SVG canvas
-    svgX = evt.clientX - svgRect.left;
-    svgY = evt.clientY - svgRect.top;
+    X = evt.clientX - svgRect.left;
+    Y = evt.clientY - svgRect.top;
 
-    tooltip1.setAttribute("x", (svgX - 20) * 1.8);
-    tooltip1.setAttribute("y", (svgY - 20) * 1.8);
+    tooltip1.setAttribute("x", X+5);
+    tooltip1.setAttribute("y", Y+4);
     // tooltip.firstChild.data = mouseovertext;
     tooltip1.firstChild.data = state;
     tooltip1.setAttributeNS(null, "visibility", "visible");
@@ -146,8 +146,8 @@ function showTooltip(evt, state) {
 
     length = tooltip1.getComputedTextLength();
     tooltip_bg.setAttributeNS(null, "width", length + 40);
-    tooltip_bg.setAttributeNS(null, "x", (svgX - 30) * 1.8);
-    tooltip_bg.setAttributeNS(null, "y", (svgY - 30) * 1.8);
+    tooltip_bg.setAttributeNS(null, "x", (X -10));
+    tooltip_bg.setAttributeNS(null, "y", (Y -14));
     tooltip_bg.setAttributeNS(null, "visibility", "visibile");
 }
 
@@ -255,8 +255,8 @@ function drawChart() {
     // Set chart options
     var options = {
         'title': 'Students Enrollment in All Types of Management',
-        'width': 400,
-        'height': 280,
+        'width': 500,
+        'height': 300,
         'is3D': true,
         chartArea:{
             left:10,
@@ -268,7 +268,7 @@ function drawChart() {
         fontSize: 16,
         legend: {
             position: 'Center', 
-            textStyle: {color: 'black', fontSize: 12},
+            textStyle: {color: 'black', fontSize: 14},
         alignment: 'center'},
         pieSliceTextStyle: {color: 'white', fontSize: 14},
         tooltip: {textStyle: {fontSize: 14}, showColorCode: true},
