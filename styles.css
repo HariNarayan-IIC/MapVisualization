@@ -218,8 +218,8 @@ header {
     width: 50vw;
     display: block;
     position: sticky;
-    top: 0;
-    height: 90%;
+    top: 5px;
+    height: 100%;
     /* border: black solid 2px; */
     /* height: 100%; */
     color: #bcb9b9;
@@ -229,7 +229,7 @@ header {
     width: auto;
     height: 100%;
     cursor: default;
-    margin: 8px;
+    margin-top: 5px;
 }
 
 #map-title {
@@ -320,6 +320,9 @@ header {
 
 #pie-chart {
     display: flex;
-    border: 2px solid #361342;
+    /* border: 2px solid #361342; */
+    border-radius: 20px;
     justify-content: center;
+    margin: 10px;
+    background-color: #e6cbf388;
 }

@@ -258,7 +258,6 @@ function drawChart() {
         'width': 400,
         'height': 280,
         'is3D': true,
-        // 'backgroundColor': '#bcb9b9',
         chartArea:{
             left:10,
             top:30,
@@ -272,7 +271,8 @@ function drawChart() {
             textStyle: {color: 'black', fontSize: 12},
         alignment: 'center'},
         pieSliceTextStyle: {color: 'white', fontSize: 14},
-        tooltip: {textStyle: {fontSize: 14}, showColorCode: true}
+        tooltip: {textStyle: {fontSize: 14}, showColorCode: true},
+        backgroundColor: "transparent",
     };
 
     // Instantiate and draw our chart, passing in some options.
