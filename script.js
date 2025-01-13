@@ -103,8 +103,8 @@ function showTooltip(evt, state) {
     X = evt.clientX - svgRect.left;
     Y = evt.clientY - svgRect.top;
 
-    tooltip1.setAttribute("x", X+5);
-    tooltip1.setAttribute("y", Y+4);
+    tooltip1.setAttribute("x", X+15);
+    tooltip1.setAttribute("y", Y+14);
     // tooltip.firstChild.data = mouseovertext;
     tooltip1.firstChild.data = state;
     tooltip1.setAttributeNS(null, "visibility", "visible");
@@ -145,9 +145,9 @@ function showTooltip(evt, state) {
     // tooltip8.setAttributeNS(null, "visibility", "visible");
 
     length = tooltip1.getComputedTextLength();
-    tooltip_bg.setAttributeNS(null, "width", length + 40);
-    tooltip_bg.setAttributeNS(null, "x", (X -10));
-    tooltip_bg.setAttributeNS(null, "y", (Y -14));
+    tooltip_bg.setAttributeNS(null, "width", length + 20);
+    tooltip_bg.setAttributeNS(null, "x", (X + 5));
+    tooltip_bg.setAttributeNS(null, "y", (Y - 5));
     tooltip_bg.setAttributeNS(null, "visibility", "visibile");
 }
 
@@ -280,15 +280,15 @@ function drawChart() {
     chart.draw(data, options);
 
     // Bar chart visualization
-    var barchart_options = {
-        title: 'Barchart: How Much Pizza I Ate Last Night',
-        width: 500,
-        height: 300,
-        legend: 'none',
-        'backgroundColor': '#bcb900'
-    };
-    var barchart = new google.visualization.BarChart(document.getElementById('barchart_div'));
-    barchart.draw(data, barchart_options);
+    // var barchart_options = {
+    //     title: 'Barchart: How Much Pizza I Ate Last Night',
+    //     width: 500,
+    //     height: 300,
+    //     legend: 'none',
+    //     'backgroundColor': '#bcb900'
+    // };
+    // var barchart = new google.visualization.BarChart(document.getElementById('barchart_div'));
+    // barchart.draw(data, barchart_options);
 }
 
 

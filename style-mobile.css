@@ -1,0 +1,18 @@
+.container {
+    flex-direction: column;
+}
+
+.map-section{
+    width: 100%;
+    /* border: 2px solid blue; */
+    position: relative;
+    text-align: center;
+}
+
+.details-section{
+    width: 100%;
+}
+
+.h2-header{
+    font-size: 3vw;
+}
