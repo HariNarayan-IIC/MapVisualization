@@ -103,8 +103,8 @@ function showTooltip(evt, state) {
     X = evt.clientX - svgRect.left;
     Y = evt.clientY - svgRect.top;
 
-    tooltip1.setAttribute("x", X+15);
-    tooltip1.setAttribute("y", Y+14);
+    tooltip1.setAttribute("x", X-35);
+    tooltip1.setAttribute("y", Y+34);
     // tooltip.firstChild.data = mouseovertext;
     tooltip1.firstChild.data = state;
     tooltip1.setAttributeNS(null, "visibility", "visible");
@@ -146,8 +146,8 @@ function showTooltip(evt, state) {
 
     length = tooltip1.getComputedTextLength();
     tooltip_bg.setAttributeNS(null, "width", length + 20);
-    tooltip_bg.setAttributeNS(null, "x", (X + 5));
-    tooltip_bg.setAttributeNS(null, "y", (Y - 5));
+    tooltip_bg.setAttributeNS(null, "x", (X - 40));
+    tooltip_bg.setAttributeNS(null, "y", (Y + 15));
     tooltip_bg.setAttributeNS(null, "visibility", "visibile");
 }
 
