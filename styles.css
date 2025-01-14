@@ -101,7 +101,7 @@ header {
     display: flex;
     justify-content: space-between;
     flex-direction: row;
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
     /* align-items: flex-start; */
     /* height: calc(100vh - 90px); */
     height: auto;
@@ -218,15 +218,16 @@ header {
 /* ================================================================================= */
 /* Map Section Styling */
 .map-section {
-    width: 49%;
+    width: 40%;
     display: block;
     position: sticky;
-    top: 5px;
+    top: 20px;
     height: 100%;
     /* border: black solid 2px; */
     /* height: 100%; */
     color: #bcb9b9;
     text-align: center;
+    margin: 5px ;
 }
 
 #map-svg {
@@ -258,9 +259,9 @@ header {
     display: flex;
     flex-flow: column;
     justify-content: center;
-    width: 50%;
+    width: 60%;
     height: 100%;
-    overflow: auto;
+    /* overflow:scroll; */
 }
 
 .details_header{
@@ -323,17 +324,30 @@ header {
 }
 
 /* Charts styling */
-.charts {
+.charts-container {
     display: flex;
+    flex-direction: row;
     flex-wrap: wrap;
+    justify-content: space-evenly;
 }
 
-#pie-chart {
+#piee-chart {
     display: flex;
     /* border: 2px solid #361342; */
     border-radius: 20px;
     justify-content: center;
-    margin: 10px;
+    width: 52%;
+    margin: 2.5px;
+    background-color: #cfcbf388;
+}
+
+#barchart_div {
+    width: 750px;
+    display: flex;
+    /* border: 2px solid #361342; */
+    border-radius: 20px;
+    justify-content: center;
+    margin: 2.5px;
     background-color: #cfcbf388;
 }
 

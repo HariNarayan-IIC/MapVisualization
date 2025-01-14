@@ -255,7 +255,7 @@ function drawChart() {
     // Set chart options
     var options = {
         'title': 'Students Enrollment in All Types of Management',
-        'width': 500,
+        'width': 450,
         'height': 300,
         'is3D': true,
         chartArea:{
@@ -268,10 +268,16 @@ function drawChart() {
         fontSize: 16,
         legend: {
             position: 'Center', 
-            textStyle: {color: 'black', fontSize: 14},
-        alignment: 'center'},
-        pieSliceTextStyle: {color: 'white', fontSize: 14},
-        tooltip: {textStyle: {fontSize: 14}, showColorCode: true},
+            textStyle: {
+                color: 'black', 
+                fontSize: 14},
+            alignment: 'center'},
+        pieSliceTextStyle: {
+            color: 'white', 
+            fontSize: 14},
+        tooltip: {
+            textStyle: {fontSize: 14}, 
+            showColorCode: true},
         backgroundColor: "transparent",
     };
 
@@ -279,16 +285,63 @@ function drawChart() {
     var chart = new google.visualization.PieChart(document.getElementById('pie-chart'));
     chart.draw(data, options);
 
+    //donut chart option and features
+    var donut_options = {
+        'title': 'Students Enrollment in All Types of Management',
+        'width': 450,
+        'height': 300,
+        chartArea:{
+            left:10,
+            top:30,
+            right:10,
+            bottom: 30,
+            width:'100%',
+            height:'100%'},
+        fontSize: 16,
+        legend: {
+            position: 'Center', 
+            textStyle: {
+                color: 'black', 
+                fontSize: 14},
+            alignment: 'center'},
+        pieSliceTextStyle: {
+            color: 'white', 
+            fontSize: 14},
+        tooltip: {
+            textStyle: {fontSize: 14}, 
+            showColorCode: true},
+        backgroundColor: "transparent",
+        pieHole: 0.4,
+    };
+
+    //Donut chart Visualization
+    var chart = new google.visualization.PieChart(document.getElementById('donut-chart'));
+    chart.draw(data, donut_options);
+
     // Bar chart visualization
-    // var barchart_options = {
-    //     title: 'Barchart: How Much Pizza I Ate Last Night',
-    //     width: 500,
-    //     height: 300,
-    //     legend: 'none',
-    //     'backgroundColor': '#bcb900'
-    // };
-    // var barchart = new google.visualization.BarChart(document.getElementById('barchart_div'));
-    // barchart.draw(data, barchart_options);
+    var barchart_options = {
+        title: 'Barchart: How Much Pizza I Ate Last Night',
+        width: 700,
+        height: 300,
+        legend: 'none',
+        backgroundColor: 'transparent',
+        bars: 'vertical',
+        chartArea: {
+            top: 30,
+            right: 50, 
+            left: 120,
+            bottom: 30        
+        },
+        fontSize: 14,
+        colors: ['#110247', 'green'],
+        titleTextStyle: {
+            color: "Black",
+            fontSize: 14,
+            bold: true
+        }
+    };
+    var barchart = new google.visualization.BarChart(document.getElementById('barchart_div'));
+    barchart.draw(data, barchart_options);
 }
 
 
