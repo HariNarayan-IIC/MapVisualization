@@ -1,46 +1,53 @@
-var data1 = [['IN-UP'],
-['IN-BR', 'IN-MH'],
-['IN-WB', 'IN-MP', 'IN-RJ', 'IN-TN', 'IN-GJ', 'IN-KA', 'IN-AP'],
-['IN-OR', 'IN-JH', 'IN-TG', 'IN-KL', 'IN-AS', 'IN-PB', 'IN-HR', 'IN-CT', 'IN-UT', 'IN-DL', 'IN-JK'],
-['IN-HP', 'IN-TR', 'IN-ML', 'IN-MN', 'IN-NL', 'IN-PY', 'IN-GA', 'IN-AR', 'IN-DN', 'IN-MZ', 'IN-CH']
-];
+// var data1 = [['IN-UP'],
+// ['IN-BR', 'IN-MH'],
+// ['IN-WB', 'IN-MP', 'IN-RJ', 'IN-TN', 'IN-GJ', 'IN-KA', 'IN-AP'],
+// ['IN-OR', 'IN-JH', 'IN-TG', 'IN-KL', 'IN-AS', 'IN-PB', 'IN-HR', 'IN-CT', 'IN-UT', 'IN-DL', 'IN-JK'],
+// ['IN-HP', 'IN-TR', 'IN-ML', 'IN-MN', 'IN-NL', 'IN-PY', 'IN-GA', 'IN-AR', 'IN-DN', 'IN-MZ', 'IN-CH']
+// ];
 
-var ids = ['IN-AN', 'IN-AP', 'IN-AR', 'IN-AS', 'IN-BR', 'IN-CH', 'IN-CT', 'IN-DD', 'IN-DL', 'IN-DN', 'IN-GA', 'IN-GJ',
-    'IN-HP', 'IN-HR', 'IN-JH', 'IN-JK', 'IN-KA', 'IN-KL', 'IN-LD', 'IN-MH', 'IN-ML', 'IN-MN', 'IN-MP',
+var ids = ['IN-AN', 'IN-AP', 'IN-AR', 'IN-AS', 'IN-BR', 'IN-CH', 'IN-CT', 'IN-DD', 'IN-DL', 'IN-GA', 'IN-GJ',
+    'IN-HP', 'IN-HR', 'IN-JH', 'IN-JK', 'IN-KA', 'IN-KL', 'IN-LK', 'IN-LD', 'IN-MH', 'IN-ML', 'IN-MN', 'IN-MP',
     'IN-MZ', 'IN-NL', 'IN-OR', 'IN-PB', 'IN-PY', 'IN-RJ', 'IN-SK', 'IN-TG', 'IN-TN', 'IN-TR',
     'IN-UP', 'IN-UT', 'IN-WB'];
 
-var pp, p, up, s, hs = 0;
 
-let schoolData;
-fetch('SchoolData.json')
-    .then(response => response.json())
-    .then(data => {
-        schoolData = data;
 
-        // console.log(data[0].State); // JSON data from the file
-    })
-    .catch(error => console.error('Error fetching JSON:', error));
+let  pp, p, up, s, hs = 0;
 
 
 
-function init(evt) {
+function loadData(){
+    return new Promise((resolve, reject) => {
+        fetch('SchoolData.json')
+        .then(response => response.json())
+        .then(data => {
+            resolve(data);
+            // console.log(data[0].State); // JSON data from the file
+        })
+        .catch(error => console.error('Error fetching JSON:', error));
+    })   
+}
+
+
+
+
+async function init(evt) {
     if (window.svgDocument == null) {
         svgDocument = evt.target.ownerDocument;
     }
 
+    let schoolData = await loadData();
+
+    let maxValue = await schoolData.reduce((max, obj) => Math.max(max, obj.grossEnrollement), -Infinity);
+
+
+
+
     tooltip1 = svgDocument.getElementById('tooltip1');
-    tooltip2 = svgDocument.getElementById('tooltip2');
-    tooltip3 = svgDocument.getElementById('tooltip3');
-    tooltip4 = svgDocument.getElementById('tooltip4');
-    tooltip5 = svgDocument.getElementById('tooltip5');
-    tooltip6 = svgDocument.getElementById('tooltip6');
-    tooltip7 = svgDocument.getElementById('tooltip7');
-    tooltip8 = svgDocument.getElementById('tooltip8');
     tooltip_bg = svgDocument.getElementById('tooltip_bg');
 
-    for (var i in ids) {
-        elt = document.getElementById(ids[i]);
+    for (var id in ids) {
+        elt = document.getElementById(ids[id]);
 
         elt.onmouseover = function (e) {
             // showTooltip(e, capitalizeFirstLetter(e.currentTarget.getAttribute(gobar[i].State)));
@@ -65,7 +72,6 @@ function init(evt) {
                 details.girlsToilet
             )
             pp = Number(details.Pre_Primary);
-            console.log(pp);
             p = Number(details.Primary);
             up = Number(details.Upper_Primary);
             s = Number(details.Secondary);
@@ -73,17 +79,25 @@ function init(evt) {
             google.charts.load('current', { 'packages': ['corechart'] });
             google.charts.setOnLoadCallback(drawChart);
         };
-    }
 
-    colourCountries(data1);
+        let data = await schoolData.find(item => item.id === ids[id]).grossEnrollement;
+        colourState(ids[id], data, maxValue)
+        
+    }
 }
 
-function colourCountries(data) {
-    for (var colour = 0; colour < data.length; colour++) {
-        for (var country = 0; country < data[colour].length; country++) {
-            colourCountry(data[colour][country], colour);
+function colourState(id, data, max) {
+
+    for (let i= 1; i< 6; i++) { 
+        if (data <= ((i*max)/5)) {
+            var state = svgDocument.getElementById(id);
+            var oldClass = state.getAttributeNS(null, 'class');
+            var newClass = oldClass + ' colour' + i;
+            state.setAttributeNS(null, 'class', newClass);
+            break;
         }
     }
+    
 }
 
 function colourCountry(name, colour) {
