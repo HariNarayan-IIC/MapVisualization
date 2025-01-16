@@ -11,7 +11,6 @@ var ids = ['IN-AN', 'IN-AP', 'IN-AR', 'IN-AS', 'IN-BR', 'IN-CH', 'IN-CT', 'IN-DD
     'IN-UP', 'IN-UT', 'IN-WB'];
 
 
-
 let  pp, p, up, s, hs = 0;
 
 
@@ -39,8 +38,8 @@ async function init(evt) {
     let schoolData = await loadData();
 
     let maxValue = await schoolData.reduce((max, obj) => Math.max(max, obj.grossEnrollement), -Infinity);
-
-
+    let x = (String(maxValue).length)-1;
+    maxValue = Math.ceil(maxValue/10**x) * (10**x);
 
 
     tooltip1 = svgDocument.getElementById('tooltip1');
@@ -84,28 +83,53 @@ async function init(evt) {
         colourState(ids[id], data, maxValue)
         
     }
+
+    showHeatMapLabel(maxValue);
 }
+
+
 
 function colourState(id, data, max) {
+// This function fills the state with color as per data. The color is decided by dividing the max value by 5. The data falls into any one of the 5 color range.
+// For example if the max value is 200 then the range will be 0-40, 40-80, 80-120, 120-140, 140-160, 160-200.
+// Parameters:
+// "id" is the id of state path inside svg
+// "data" is the data based on which the color of the state needs to be decided
+// "max" is the maximum value out of all the state for that particular type of data
 
-    for (let i= 1; i< 6; i++) { 
-        if (data <= ((i*max)/5)) {
-            var state = svgDocument.getElementById(id);
-            var oldClass = state.getAttributeNS(null, 'class');
-            var newClass = oldClass + ' colour' + i;
-            state.setAttributeNS(null, 'class', newClass);
-            break;
-        }
+    let rangeSize = max/5;
+    let i = Math.ceil(data/rangeSize);
+    let state = svgDocument.getElementById(id);
+    let oldClass = state.getAttributeNS(null, 'class');
+    let newClass = oldClass + ' colour' + i;
+    state.setAttributeNS(null, 'class', newClass);
+}
+
+
+function showHeatMapLabel(max) {
+    let rangeSize = max/5;
+    for (let i= 1; i<= 5; i++) {
+        svgDocument.getElementById("range" + i).innerHTML = nFormatter((i-1) * Math.ceil(rangeSize)) + " - " + nFormatter(i * Math.ceil(rangeSize));
     }
-    
 }
 
-function colourCountry(name, colour) {
-    var country = svgDocument.getElementById(name);
-    var oldClass = country.getAttributeNS(null, 'class');
-    var newClass = oldClass + ' colour' + colour;
-    country.setAttributeNS(null, 'class', newClass);
-}
+
+function nFormatter(num, digits= 0) {
+// This function rounds 
+    const lookup = [
+      { value: 1, symbol: "" },
+      { value: 1e3, symbol: "k" },
+      { value: 1e6, symbol: "M" },
+      { value: 1e9, symbol: "G" },
+      { value: 1e12, symbol: "T" },
+      { value: 1e15, symbol: "P" },
+      { value: 1e18, symbol: "E" }
+    ];
+    const regexp = /\.0+$|(?<=\.[0-9]*[1-9])0+$/;
+    const item = lookup.findLast(item => num >= item.value);
+    return item ? (num / item.value).toFixed(digits).replace(regexp, "").concat(item.symbol) : "0";
+  }
+
 
 function showTooltip(evt, state) {
     const svg = document.querySelector('svg');
@@ -182,14 +206,19 @@ function capitalizeFirstLetter(string) {
 }
 
 function showDataInCards(drinkingWater, grossEnrollement, computers, electricity, boysToilet, girlsToilet) {
-    document.querySelector("#card-0 .value").innerHTML = drinkingWater
-    document.querySelector("#card-1 .value").innerHTML = grossEnrollement
-    document.querySelector("#card-2 .value").innerHTML = computers
-    document.querySelector("#card-3 .value").innerHTML = electricity
-    document.querySelector("#card-4 .value").innerHTML = boysToilet
-    document.querySelector("#card-5 .value").innerHTML = girlsToilet
+    document.querySelector("#card-0 .value").innerHTML = drinkingWater + "%";
+    document.querySelector("#card-1 .value").innerHTML = formatNumber(grossEnrollement);
+    document.querySelector("#card-2 .value").innerHTML = computers + "%";
+    document.querySelector("#card-3 .value").innerHTML = electricity + "%";
+    document.querySelector("#card-4 .value").innerHTML = formatNumber(boysToilet);
+    document.querySelector("#card-5 .value").innerHTML = formatNumber(girlsToilet);
 }
 
+
+function formatNumber(n) {
+// This function adds comma(,) after every three digits and returns a string
+    return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
 
 // Following are functions that toggle visibility of cards based on the selected filters.
 // Six similar looking functions for each checkbox 😮‍💨😩. There must be better ways of doing this.

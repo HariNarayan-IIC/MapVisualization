@@ -61,7 +61,7 @@
         <section class="map-section">
             <!-- <div class="map-container"> -->
             <!-- <svg id="map-svg" viewBox="0 0 750 650" xmlns="http://www.w3.org/2000/svg" onload="init(evt)"> -->
-            <svg height="850" width="850" onload="init(evt)" id="map-svg">
+            <svg height="850" width="800" onload="init(evt)" id="map-svg">
                 <!-- <svg xmlns="http://www.w3.org/2000/svg" xmlns:amcharts="http://amcharts.com/ammap" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"> -->
                     <!-- <defs>
                         <style type="text/css">
@@ -127,23 +127,23 @@
                 <text class="tooltip1" id="tooltip1" y="100" s="100px" visibility="hidden">ToolTipLine1</text>
                 <text id="map-title" x="350" y="40">Students Enrollement</text>
 
-                <g class="label" x="200" y="300">
-                        <text class="label" x="400" y="560">Indian States by Schools</text>
+                <g x="200" y="300">
+                        <text class="label" x="400" y="600">Indian States by Students</text>
 
-                        <rect x="400" y="600" width="20" height="20" class="colour0" />
+                        <!-- <rect x="400" y="600" width="20" height="20" class="colour0" /> -->
                         <rect x="400" y="625" width="20" height="20" class="colour1" />
                         <rect x="400" y="650" width="20" height="20" class="colour2" />
                         <rect x="400" y="675" width="20" height="20" class="colour3" />
                         <rect x="400" y="700" width="20" height="20" class="colour4" />
                         <rect x="400" y="725" width="20" height="20" class="colour5" />
 
-                        <text x="425" y="615"> &gt; 200M</text>
-                        <text x="425" y="640">100 - 200M</text>
-                        <text x="425" y="665">50 - 100M</text>
-                        <text x="425" y="690">10 - 50M</text>
-                        <text x="425" y="715">1 - 10M</text>
-                        <text x="425" y="740"> &lt; 1M</text>
-                        <rect id="border" x="380" y="530" rx="3" ry="4" width="210" height="230" />
+                        <!-- <text x="425" y="615"> &gt; 200M</text> -->
+                        <text x="425" y="640" id="range1"></text>
+                        <text x="425" y="665" id="range2"></text>
+                        <text x="425" y="690" id="range3"></text>
+                        <text x="425" y="715" id="range4"></text>
+                        <text x="425" y="740" id="range5"></text>
+                        <rect id="border" x="380" y="575" rx="3" ry="4" width="210" height="180" />
                     </g>
 
 
