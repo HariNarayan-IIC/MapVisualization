@@ -12,12 +12,15 @@ var ids = ['IN-AN', 'IN-AP', 'IN-AR', 'IN-AS', 'IN-BR', 'IN-CH', 'IN-CT', 'IN-DD
 
 
 let  pp, p, up, s, hs = 0;
+let schoolData;
+let computersData;
+let c_data;
 
 
 
-function loadData(){
+function loadData(filePath){
     return new Promise((resolve, reject) => {
-        fetch('SchoolData.json')
+        fetch(filePath)
         .then(response => response.json())
         .then(data => {
             resolve(data);
@@ -35,7 +38,9 @@ async function init(evt) {
         svgDocument = evt.target.ownerDocument;
     }
 
-    let schoolData = await loadData();
+    schoolData = await loadData('SchoolData.json');
+    computersData = await loadData('ComputersData.json');
+
 
     let maxValue = await schoolData.reduce((max, obj) => Math.max(max, obj.grossEnrollement), -Infinity);
     let x = (String(maxValue).length)-1;
@@ -45,8 +50,11 @@ async function init(evt) {
     tooltip1 = svgDocument.getElementById('tooltip1');
     tooltip_bg = svgDocument.getElementById('tooltip_bg');
 
-    for (var id in ids) {
-        elt = document.getElementById(ids[id]);
+    
+
+    for (var i in ids) {
+        elt = document.getElementById(ids[i]);
+        
 
         elt.onmouseover = function (e) {
             // showTooltip(e, capitalizeFirstLetter(e.currentTarget.getAttribute(gobar[i].State)));
@@ -60,7 +68,8 @@ async function init(evt) {
         };
 
         elt.onclick = function (e) {
-            let details = schoolData.find(item => item.id === e.currentTarget.getAttribute("id"))
+            let details = schoolData.find(item => item.id === e.currentTarget.getAttribute("id"));
+            c_data = computersData.find(item => item.id === e.currentTarget.getAttribute("id"));
             document.getElementById("state_title").innerHTML = details.state;
             showDataInCards(
                 details.drinkingWater,
@@ -76,11 +85,11 @@ async function init(evt) {
             s = Number(details.Secondary);
             hs = Number(details.Higher_Secondary);
             google.charts.load('current', { 'packages': ['corechart'] });
-            google.charts.setOnLoadCallback(drawChart);
+            google.charts.setOnLoadCallback(drawChart)
         };
 
-        let data = await schoolData.find(item => item.id === ids[id]).grossEnrollement;
-        colourState(ids[id], data, maxValue)
+        let data = await schoolData.find(item => item.id === ids[i]).grossEnrollement;
+        colourState(ids[i], data, maxValue)
         
     }
 
@@ -272,11 +281,6 @@ document.getElementById("girlsToilet").onclick = function () {
 
 
 //script for creating Google charts//////////////////////////////////////////////////////////////////////////////////////
-// Load the Visualization API and the corechart package.
-google.charts.load('current', { 'packages': ['corechart'] });
-
-// Set a callback to run when the Google Visualization API is loaded.
-google.charts.setOnLoadCallback(drawChart);
 
 // Callback that creates and populates a data table,
 // instantiates the pie chart, passes in the data and
@@ -358,8 +362,8 @@ function drawChart() {
     };
 
     //Donut chart Visualization
-    var chart = new google.visualization.PieChart(document.getElementById('donut-chart'));
-    chart.draw(data, donut_options);
+    // var chart = new google.visualization.PieChart(document.getElementById('donut-chart'));
+    // chart.draw(data, donut_options);
 
     // Bar chart visualization
     var barchart_options = {
@@ -385,6 +389,28 @@ function drawChart() {
     };
     var barchart = new google.visualization.BarChart(document.getElementById('barchart_div'));
     barchart.draw(data, barchart_options);
+
+ 
+    var areaChartData = google.visualization.arrayToDataTable([
+        ['School Type', 'Total Schools', 'Schools with computers'],
+        ['All management',  c_data.Total_Schools_All_Management,      c_data.Computers_All_Management],
+        ['Government',  c_data.Total_Schools_Govt,      c_data.Computers_Govt],
+        ['Govt. aided',  c_data.Total_Schools_Govt_Aided,       c_data.Computers_Govt_Aided],
+        ['Pvt. unaided',  c_data.Total_Schools_Pvt_Unaided,      c_data.Computers_Pvt_Unaided],
+        ['Others',  c_data.Total_Schools_Others, c_data.Computers_Others ]
+    ]);
+
+    var areaChartOptions = {
+        title: 'Schools with computers',
+        width: 700,
+        height: 300,
+        hAxis: {title: 'School types',  titleTextStyle: {color: '#333'}},
+        vAxis: {minValue: 0}
+    };
+
+    var areaChart = new google.visualization.AreaChart(document.getElementById('area-chart'));
+    areaChart.draw(areaChartData, areaChartOptions);
+
 }
 
 
