@@ -1,0 +1,106 @@
+<html lang="en">
+
+<head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+
+        //   loading data from local .json
+        function loadData(file_path) {
+            return new Promise((resolve, reject) => {
+                fetch(file_path)
+                    .then(response => response.json())
+                    .then(data => {
+                        resolve(data);
+                        // console.log(data[0].State); // JSON data from the file
+                    })
+                    .catch(error => console.error('Error fetching JSON:', error));
+            })
+        }
+
+        let scData, s_id, stData;
+
+        async function init() {
+            let sc_data = await loadData("SC_School_data.json");
+            console.log(sc_data[3]);
+            scData = sc_data;
+            s_id = 3;
+
+            let st_data = await loadData("ST_School_data.json");
+            console.log(st_data[1]);
+            stData = st_data;
+
+
+            google.charts.load('current', { 'packages': ['bar'] });
+            google.charts.setOnLoadCallback(drawChart);
+        }
+
+        function drawChart() {
+            // console.log(scData[id]['Scheduled Castes (SC)-Age 3-5 - Boys'])
+            var data_sc = google.visualization.arrayToDataTable([
+                ['Age Group', 'Boys', 'Girls'],
+                ['Age 3-5', scData[s_id]['Scheduled Castes (SC)-Age 3-5 - Boys'], scData[s_id]['Scheduled Castes (SC)-Age 3-5 - Girls']],
+                ['Age 6-10', scData[s_id]['Scheduled Castes (SC)-Age 6-10 - Boys'], scData[s_id]['Scheduled Castes (SC)-Age 6-10 - Girls']],
+                ['Age 11-13', scData[s_id]['Scheduled Castes (SC)-Age 11-13 - Boys'], scData[s_id]['Scheduled Castes (SC)-Age 11-13 - Girls']],
+                ['Age 14-15', scData[s_id]['Scheduled Castes (SC)-Age 14-15 - Boys'], scData[s_id]['Scheduled Castes (SC)-Age 14-15 - Girls']],
+                ['Age 16-17', scData[s_id]['Scheduled Castes (SC)-Age 16-17 - Boys'], scData[s_id]['Scheduled Castes (SC)-Age 16-17 - Girls']]
+            ]);
+
+            var data_st = google.visualization.arrayToDataTable([
+                ['Age Group', 'Boys', 'Girls'],
+                ['Age 3-5', stData[s_id]['Scheduled Tribes (ST) - Age 3-5 - Boys'], stData[s_id]['Scheduled Tribes (ST) - Age 3-5 - Girls']],
+                ['Age 6-10', stData[s_id]['Scheduled Tribes (ST) - Age 6-10 - Boys'], stData[s_id]['Scheduled Tribes (ST) - Age 6-10 - Girls']],
+                ['Age 11-13', stData[s_id]['Scheduled Tribes (ST) - Age 11-13 - Boys'], stData[s_id]['Scheduled Tribes (ST) - Age 11-13 - Girls']],
+                ['Age 14-15', stData[s_id]['Scheduled Tribes (ST) - Age 14-15 - Boys'], stData[s_id]['Scheduled Tribes (ST) - Age 14-15 - Girls']],
+                ['Age 16-17', stData[s_id]['Scheduled Tribes (ST) - Age 16-17 - Boys'], stData[s_id]['Scheduled Tribes (ST) - Age 16-17 - Girls']]
+            ]);
+
+
+            var options_sc = {
+                fontSize:16,
+                chart: {
+                    title: 'SC population by Age Group',
+                    subtitle: 'Gender Distribution',
+                },
+                legend:{
+                    position: 'top',
+                    alignment:'start',
+                }
+            };
+
+            var options_st = {
+                chart: {
+                    title: 'ST population by Age Group',
+                    subtitle: 'Gender Distribution',
+                },
+            
+                legend: {position: 'none'}
+            };
+
+            // SC Data graph
+            var chart1 = new google.charts.Bar(document.getElementById('SC_barChart'));
+            chart1.draw(data_sc, options_sc);
+
+            //ST Data Graph
+            var chart = new google.charts.Bar(document.getElementById('ST_barChart'));
+            chart.draw(data_st, options_st);
+
+        }
+
+        init();
+    </script>
+</head>
+
+<body>
+    <table>
+        <tr>
+            <td>
+                <div id="SC_barChart" style="width: 48vw; height: 500px;"></div>
+            </td>
+            <td>
+                <div id="ST_barChart" style="width: 48vw; height: 500px;"></div>
+            </td>
+        </tr>
+    </table>
+</body>
+
+</html>
