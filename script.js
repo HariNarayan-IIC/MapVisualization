@@ -11,14 +11,16 @@ var ids = ['IN-AN', 'IN-AP', 'IN-AR', 'IN-AS', 'IN-BR', 'IN-CH', 'IN-CT', 'IN-DD
     'IN-UP', 'IN-UT', 'IN-WB'];
 
 
-
 let  pp, p, up, s, hs = 0;
+let schoolData;
+let computersData;
+let c_data;
 
 
 
-function loadData(){
+function loadData(filePath){
     return new Promise((resolve, reject) => {
-        fetch('SchoolData.json')
+        fetch(filePath)
         .then(response => response.json())
         .then(data => {
             resolve(data);
@@ -36,18 +38,23 @@ async function init(evt) {
         svgDocument = evt.target.ownerDocument;
     }
 
-    let schoolData = await loadData();
+    schoolData = await loadData('SchoolData.json');
+    computersData = await loadData('ComputersData.json');
+
 
     let maxValue = await schoolData.reduce((max, obj) => Math.max(max, obj.grossEnrollement), -Infinity);
-
-
+    let x = (String(maxValue).length)-1;
+    maxValue = Math.ceil(maxValue/10**x) * (10**x);
 
 
     tooltip1 = svgDocument.getElementById('tooltip1');
     tooltip_bg = svgDocument.getElementById('tooltip_bg');
 
-    for (var id in ids) {
-        elt = document.getElementById(ids[id]);
+    
+
+    for (var i in ids) {
+        elt = document.getElementById(ids[i]);
+        
 
         elt.onmouseover = function (e) {
             // showTooltip(e, capitalizeFirstLetter(e.currentTarget.getAttribute(gobar[i].State)));
@@ -61,7 +68,8 @@ async function init(evt) {
         };
 
         elt.onclick = function (e) {
-            let details = schoolData.find(item => item.id === e.currentTarget.getAttribute("id"))
+            let details = schoolData.find(item => item.id === e.currentTarget.getAttribute("id"));
+            c_data = computersData.find(item => item.id === e.currentTarget.getAttribute("id"));
             document.getElementById("state_title").innerHTML = details.state;
             showDataInCards(
                 details.drinkingWater,
@@ -77,35 +85,60 @@ async function init(evt) {
             s = Number(details.Secondary);
             hs = Number(details.Higher_Secondary);
             google.charts.load('current', { 'packages': ['corechart'] });
-            google.charts.setOnLoadCallback(drawChart);
+            google.charts.setOnLoadCallback(drawChart)
         };
 
-        let data = await schoolData.find(item => item.id === ids[id]).grossEnrollement;
-        colourState(ids[id], data, maxValue)
+        let data = await schoolData.find(item => item.id === ids[i]).grossEnrollement;
+        colourState(ids[i], data, maxValue)
         
     }
+
+    showHeatMapLabel(maxValue);
 }
+
+
 
 function colourState(id, data, max) {
+// This function fills the state with color as per data. The color is decided by dividing the max value by 5. The data falls into any one of the 5 color range.
+// For example if the max value is 200 then the range will be 0-40, 40-80, 80-120, 120-140, 140-160, 160-200.
+// Parameters:
+// "id" is the id of state path inside svg
+// "data" is the data based on which the color of the state needs to be decided
+// "max" is the maximum value out of all the state for that particular type of data
 
-    for (let i= 1; i< 6; i++) { 
-        if (data <= ((i*max)/5)) {
-            var state = svgDocument.getElementById(id);
-            var oldClass = state.getAttributeNS(null, 'class');
-            var newClass = oldClass + ' colour' + i;
-            state.setAttributeNS(null, 'class', newClass);
-            break;
-        }
+    let rangeSize = max/5;
+    let i = Math.ceil(data/rangeSize);
+    let state = svgDocument.getElementById(id);
+    let oldClass = state.getAttributeNS(null, 'class');
+    let newClass = oldClass + ' colour' + i;
+    state.setAttributeNS(null, 'class', newClass);
+}
+
+
+function showHeatMapLabel(max) {
+    let rangeSize = max/5;
+    for (let i= 1; i<= 5; i++) {
+        svgDocument.getElementById("range" + i).innerHTML = nFormatter((i-1) * Math.ceil(rangeSize)) + " - " + nFormatter(i * Math.ceil(rangeSize));
     }
-    
 }
 
-function colourCountry(name, colour) {
-    var country = svgDocument.getElementById(name);
-    var oldClass = country.getAttributeNS(null, 'class');
-    var newClass = oldClass + ' colour' + colour;
-    country.setAttributeNS(null, 'class', newClass);
-}
+
+function nFormatter(num, digits= 0) {
+// This function rounds 
+    const lookup = [
+      { value: 1, symbol: "" },
+      { value: 1e3, symbol: "k" },
+      { value: 1e6, symbol: "M" },
+      { value: 1e9, symbol: "G" },
+      { value: 1e12, symbol: "T" },
+      { value: 1e15, symbol: "P" },
+      { value: 1e18, symbol: "E" }
+    ];
+    const regexp = /\.0+$|(?<=\.[0-9]*[1-9])0+$/;
+    const item = lookup.findLast(item => num >= item.value);
+    return item ? (num / item.value).toFixed(digits).replace(regexp, "").concat(item.symbol) : "0";
+  }
+
 
 function showTooltip(evt, state) {
     const svg = document.querySelector('svg');
@@ -182,14 +215,29 @@ function capitalizeFirstLetter(string) {
 }
 
 function showDataInCards(drinkingWater, grossEnrollement, computers, electricity, boysToilet, girlsToilet) {
-    document.querySelector("#card-0 .value").innerHTML = drinkingWater
-    document.querySelector("#card-1 .value").innerHTML = grossEnrollement
-    document.querySelector("#card-2 .value").innerHTML = computers
-    document.querySelector("#card-3 .value").innerHTML = electricity
-    document.querySelector("#card-4 .value").innerHTML = boysToilet
-    document.querySelector("#card-5 .value").innerHTML = girlsToilet
+    document.querySelector("#card-0 .value").innerHTML = drinkingWater + "%";
+    document.querySelector("#card-1 .value").innerHTML = formatNumber(grossEnrollement);
+    document.querySelector("#card-2 .value").innerHTML = computers + "%";
+    document.querySelector("#card-3 .value").innerHTML = electricity + "%";
+    document.querySelector("#card-4 .value").innerHTML = formatNumber(boysToilet);
+    document.querySelector("#card-5 .value").innerHTML = formatNumber(girlsToilet);
 }
 
+
+function formatNumber(n) {
+// This function adds comma(,) after every three digits and returns a string
+    return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+// Following funtion toggles the visibility of sidebar
+function toggleSideBarVisibility() {
+    var x = document.getElementById("control-section");
+    if (x.style.display === "none") {
+      x.style.display = "block";
+    } else {
+      x.style.display = "none";
+    }
+  }
 
 // Following are functions that toggle visibility of cards based on the selected filters.
 // Six similar looking functions for each checkbox 😮‍💨😩. There must be better ways of doing this.
@@ -243,11 +291,6 @@ document.getElementById("girlsToilet").onclick = function () {
 
 
 //script for creating Google charts//////////////////////////////////////////////////////////////////////////////////////
-// Load the Visualization API and the corechart package.
-google.charts.load('current', { 'packages': ['corechart'] });
-
-// Set a callback to run when the Google Visualization API is loaded.
-google.charts.setOnLoadCallback(drawChart);
 
 // Callback that creates and populates a data table,
 // instantiates the pie chart, passes in the data and
@@ -329,8 +372,8 @@ function drawChart() {
     };
 
     //Donut chart Visualization
-    var chart = new google.visualization.PieChart(document.getElementById('donut-chart'));
-    chart.draw(data, donut_options);
+    // var chart = new google.visualization.PieChart(document.getElementById('donut-chart'));
+    // chart.draw(data, donut_options);
 
     // Bar chart visualization
     var barchart_options = {
@@ -355,7 +398,41 @@ function drawChart() {
         }
     };
     var barchart = new google.visualization.BarChart(document.getElementById('barchart_div'));
-    barchart.draw(data, barchart_options);
+    // barchart.draw(data, barchart_options);
+
+ 
+    var areaChartData = google.visualization.arrayToDataTable([
+        ['School Type', 'Total Schools', 'Schools with computers'],
+        ['All management',  c_data.Total_Schools_All_Management,      c_data.Computers_All_Management],
+        ['Government',  c_data.Total_Schools_Govt,      c_data.Computers_Govt],
+        ['Govt. aided',  c_data.Total_Schools_Govt_Aided,       c_data.Computers_Govt_Aided],
+        ['Pvt. unaided',  c_data.Total_Schools_Pvt_Unaided,      c_data.Computers_Pvt_Unaided],
+        ['Others',  c_data.Total_Schools_Others, c_data.Computers_Others ]
+    ]);
+
+    var areaChartOptions = {
+        title: 'Computer availability in Schools',
+        width: 750,
+        height: 300,
+        titleTextStyle: {
+            color: "Black",
+            fontSize: 16,
+            bold: true
+        },
+        chartArea: {
+            top: 50,
+            right: 150, 
+            left: 150,
+            bottom: 60        
+        },
+        backgroundColor: 'transparent',
+        hAxis: {title: 'School types',  titleTextStyle: {color: '#333'}},
+        vAxis: {minValue: 0}
+    };
+
+    var areaChart = new google.visualization.AreaChart(document.getElementById('area-chart'));
+    areaChart.draw(areaChartData, areaChartOptions);
+
 }
 
 
