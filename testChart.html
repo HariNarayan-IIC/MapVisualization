@@ -30,7 +30,7 @@
             stData = st_data;
 
 
-            google.charts.load('current', { 'packages': ['bar'] });
+            google.charts.load('current', { 'packages': ['corechart', 'bar'] });
             google.charts.setOnLoadCallback(drawChart);
         }
 
@@ -56,35 +56,100 @@
 
 
             var options_sc = {
-                fontSize:16,
+                fontSize: 16,
+                title: 'SC population by Age Group',
+                titleTextStyle: {
+                    color: '#283747',
+                    fontSize: 16,
+                    bold: true
+                },
                 chart: {
                     title: 'SC population by Age Group',
                     subtitle: 'Gender Distribution',
+                    alignment: 'center'
                 },
-                legend:{
-                    position: 'top',
-                    alignment:'start',
+                backgroundColor: 'transparent',
+                chartArea: {
+                    backgroundColor: 'transparent'
+                },
+                bars: 'vertical',
+                legend: {
+                    position: 'bottom',
+                    textStyle: {
+                        fontSize: 14,
+                        bold: true
+                    }
+                },
+                colors: ['#342875', '#E30B5C'],
+                hAxis: {
+                    title: 'Age Group',
+                    titleTextStyle: {
+                        bold: true,
+                        fontSize: 12,
+                        color: '#283747'
+                    },
+                    textStyle: {
+                        color: '#283747',
+                        fontSize: 12,
+                    }
                 }
+
             };
 
             var options_st = {
+                title: 'ST population by Age Group',
+                titleTextStyle: {
+                    color: '#283747',
+                    fontSize: 16,
+                    bold: true
+                },
                 chart: {
                     title: 'ST population by Age Group',
                     subtitle: 'Gender Distribution',
                 },
-            
-                legend: {position: 'none'}
+                backgroundColor: 'transparent',
+                chartArea: {
+                    backgroundColor: 'transparent'
+                },
+                legend: {
+                    textStyle: {
+                        fontSize: 14,
+                        bold: true
+                    }
+                },
+                colors: ['#342875', '#E30B5C'],
+                hAxis: {
+                    title: 'Age Group',
+                    titleTextStyle: {
+                        bold: true,
+                        fontSize: 14,
+                        color: '#283747'
+                    },
+                    textStyle: {
+                        color: '#283747',
+                        fontSize: 12,
+                    }
+                }
             };
 
             // SC Data graph
             var chart1 = new google.charts.Bar(document.getElementById('SC_barChart'));
-            chart1.draw(data_sc, options_sc);
+            chart1.draw(data_sc, google.charts.Bar.convertOptions(options_sc));
 
             //ST Data Graph
             var chart = new google.charts.Bar(document.getElementById('ST_barChart'));
-            chart.draw(data_st, options_st);
+            chart.draw(data_st, google.charts.Bar.convertOptions(options_st));
 
         }
+
+        // Add a resize event listener
+        function handleResize() {
+            // Call the function to redraw the chart
+            drawChart();
+        }
+
+        // Listen for viewport size changes
+        window.addEventListener('resize', handleResize);
 
         init();
     </script>
