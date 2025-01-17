@@ -229,6 +229,16 @@ function formatNumber(n) {
     return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
+// Following funtion toggles the visibility of sidebar
+function toggleSideBarVisibility() {
+    var x = document.getElementById("control-section");
+    if (x.style.display === "none") {
+      x.style.display = "block";
+    } else {
+      x.style.display = "none";
+    }
+  }
+
 // Following are functions that toggle visibility of cards based on the selected filters.
 // Six similar looking functions for each checkbox 😮‍💨😩. There must be better ways of doing this.
 document.getElementById("drinkingWater").onclick = function () {
@@ -388,7 +398,7 @@ function drawChart() {
         }
     };
     var barchart = new google.visualization.BarChart(document.getElementById('barchart_div'));
-    barchart.draw(data, barchart_options);
+    // barchart.draw(data, barchart_options);
 
  
     var areaChartData = google.visualization.arrayToDataTable([
@@ -401,9 +411,21 @@ function drawChart() {
     ]);
 
     var areaChartOptions = {
-        title: 'Schools with computers',
-        width: 700,
+        title: 'Computer availability in Schools',
+        width: 750,
         height: 300,
+        titleTextStyle: {
+            color: "Black",
+            fontSize: 16,
+            bold: true
+        },
+        chartArea: {
+            top: 50,
+            right: 150, 
+            left: 150,
+            bottom: 60        
+        },
+        backgroundColor: 'transparent',
         hAxis: {title: 'School types',  titleTextStyle: {color: '#333'}},
         vAxis: {minValue: 0}
     };

@@ -2,6 +2,10 @@
     flex-direction: column;
 }
 
+#control-section {
+    width: 50vw;
+}
+
 .map-section{
     width: 100%;
     /* border: 2px solid blue; */

@@ -90,8 +90,20 @@ header {
     height: 50px;
     font-size: 2.8rem;
     border-bottom: 20px solid #292875;
+    position: relative;
 }
 
+#filters-icon {
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    font-size: 2rem;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
 
 
 
@@ -107,17 +119,18 @@ header {
     height: auto;
     /* border: solid black 2px; */
     margin: 0 auto;
+    position: relative;
 }
 
 
 
 
 /* ================================================================================= */
-/* control Section Styling */
+/* control sidebar Styling */
 
 #control-section {
-    display: block;
-    position: sticky;
+    display: none;
+    position: absolute;
     top: 0;
     height: 100%;
     /* flex-direction: column; */
@@ -125,7 +138,20 @@ header {
     width: 15vw;
     border-radius: 0px 30px 30px 0px;
     border: #131842 solid 2px;
-    background-color: #f5ebf9;
+    background-color: #efeefb;
+    z-index: 2;
+}
+
+#sidebar-close-icon {
+    position: absolute;
+    top: 0.75vw;
+    right: 0.7svw;
+    font-size: 2rem;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .filters-container {
@@ -349,6 +375,16 @@ header {
     justify-content: center;
     margin: 2.5px;
     background-color: #cfcbf388;
+}
+
+#area-chart {
+    width: 750px;
+    display: flex;
+    /* border: 2px solid #361342; */
+    border-radius: 20px;
+    justify-content: center;
+    margin: 2.5px;
+    background-color: #efeefb88;
 }
 
 

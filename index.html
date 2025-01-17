@@ -3,21 +3,36 @@
 
 <head>
     <title>India Interactive SVG Map</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
     <link href="styles.css" rel="stylesheet">
     <link rel="stylesheet" media="screen and (max-width:1430px)" href="style-mobile.css" >
 </head>
 
 <body>
     <header>
-        School Dashbaord
+        <div >
+            <i id="filters-icon" class="material-icons" onclick="toggleSideBarVisibility()">
+                tune
+            </i>
+        </div>
+        <div>School Dashbaord</div>
+        
     </header>
 
-    <!-- <section id="control-section" class="control-section"> 
-         Filters 
-        
-        First column of the row
-        Filters coulumn has filter options to enable and disable contents
-       
+    
+   
+    <!-- This is the main row -->
+    <div class="container">
+
+         <!-- Controls sidebar  -->
+    
+    <section id="control-section" class="control-section"> 
+        <!--         
+        Filters container has filter options to enable and disable cards
+        -->
+        <div>
+            <i id="sidebar-close-icon" class="material-icons" onclick="toggleSideBarVisibility()">close</i>
+        </div>
         <div class="filters-container ">
             <h2 class="h2-header">Filters</h2>
 
@@ -47,11 +62,7 @@
                 <span class="checkmark"></span>
             </label>
         </div>
-    </section>-->
-    <!-- This is the main row -->
-    <div class="container">
-
-
+    </section>
 
         <!-- Map -->
         <!-- 
@@ -246,6 +257,8 @@
             </div>
         </section>
     </div>
+
+     
 
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
