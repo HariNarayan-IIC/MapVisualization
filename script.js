@@ -11,23 +11,25 @@ var ids = ['IN-AN', 'IN-AP', 'IN-AR', 'IN-AS', 'IN-BR', 'IN-CH', 'IN-CT', 'IN-DD
     'IN-UP', 'IN-UT', 'IN-WB'];
 
 
-let  pp, p, up, s, hs = 0;
+let pp, p, up, s, hs = 0;
 let schoolData;
 let computersData;
 let c_data;
 
+let scData, s_id, stData;
 
 
-function loadData(filePath){
+
+function loadData(filePath) {
     return new Promise((resolve, reject) => {
         fetch(filePath)
-        .then(response => response.json())
-        .then(data => {
-            resolve(data);
-            // console.log(data[0].State); // JSON data from the file
-        })
-        .catch(error => console.error('Error fetching JSON:', error));
-    })   
+            .then(response => response.json())
+            .then(data => {
+                resolve(data);
+                // console.log(data[0].State); // JSON data from the file
+            })
+            .catch(error => console.error('Error fetching JSON:', error));
+    })
 }
 
 
@@ -41,20 +43,25 @@ async function init(evt) {
     schoolData = await loadData('SchoolData.json');
     computersData = await loadData('ComputersData.json');
 
+    let sc_data = await loadData("SC_School_data.json");
+
+    let st_data = await loadData("ST_School_data.json");
+
+
 
     let maxValue = await schoolData.reduce((max, obj) => Math.max(max, obj.grossEnrollement), -Infinity);
-    let x = (String(maxValue).length)-1;
-    maxValue = Math.ceil(maxValue/10**x) * (10**x);
+    let x = (String(maxValue).length) - 1;
+    maxValue = Math.ceil(maxValue / 10 ** x) * (10 ** x);
 
 
     tooltip1 = svgDocument.getElementById('tooltip1');
     tooltip_bg = svgDocument.getElementById('tooltip_bg');
 
-    
+
 
     for (var i in ids) {
         elt = document.getElementById(ids[i]);
-        
+
 
         elt.onmouseover = function (e) {
             // showTooltip(e, capitalizeFirstLetter(e.currentTarget.getAttribute(gobar[i].State)));
@@ -70,6 +77,9 @@ async function init(evt) {
         elt.onclick = function (e) {
             let details = schoolData.find(item => item.id === e.currentTarget.getAttribute("id"));
             c_data = computersData.find(item => item.id === e.currentTarget.getAttribute("id"));
+            scData = sc_data.find(item => item.id === e.currentTarget.getAttribute("id"));
+            stData = st_data.find(item => item.id === e.currentTarget.getAttribute("id"));
+
             document.getElementById("state_title").innerHTML = details.state;
             showDataInCards(
                 details.drinkingWater,
@@ -84,13 +94,13 @@ async function init(evt) {
             up = Number(details.Upper_Primary);
             s = Number(details.Secondary);
             hs = Number(details.Higher_Secondary);
-            google.charts.load('current', { 'packages': ['corechart'] });
+            google.charts.load('current', { 'packages': ['corechart', 'bar'] });
             google.charts.setOnLoadCallback(drawChart)
         };
 
         let data = await schoolData.find(item => item.id === ids[i]).grossEnrollement;
         colourState(ids[i], data, maxValue)
-        
+
     }
 
     showHeatMapLabel(maxValue);
@@ -99,15 +109,15 @@ async function init(evt) {
 
 
 function colourState(id, data, max) {
-// This function fills the state with color as per data. The color is decided by dividing the max value by 5. The data falls into any one of the 5 color range.
-// For example if the max value is 200 then the range will be 0-40, 40-80, 80-120, 120-140, 140-160, 160-200.
-// Parameters:
-// "id" is the id of state path inside svg
-// "data" is the data based on which the color of the state needs to be decided
-// "max" is the maximum value out of all the state for that particular type of data
+    // This function fills the state with color as per data. The color is decided by dividing the max value by 5. The data falls into any one of the 5 color range.
+    // For example if the max value is 200 then the range will be 0-40, 40-80, 80-120, 120-140, 140-160, 160-200.
+    // Parameters:
+    // "id" is the id of state path inside svg
+    // "data" is the data based on which the color of the state needs to be decided
+    // "max" is the maximum value out of all the state for that particular type of data
 
-    let rangeSize = max/5;
-    let i = Math.ceil(data/rangeSize);
+    let rangeSize = max / 5;
+    let i = Math.ceil(data / rangeSize);
     let state = svgDocument.getElementById(id);
     let oldClass = state.getAttributeNS(null, 'class');
     let newClass = oldClass + ' colour' + i;
@@ -116,28 +126,28 @@ function colourState(id, data, max) {
 
 
 function showHeatMapLabel(max) {
-    let rangeSize = max/5;
-    for (let i= 1; i<= 5; i++) {
-        svgDocument.getElementById("range" + i).innerHTML = nFormatter((i-1) * Math.ceil(rangeSize)) + " - " + nFormatter(i * Math.ceil(rangeSize));
+    let rangeSize = max / 5;
+    for (let i = 1; i <= 5; i++) {
+        svgDocument.getElementById("range" + i).innerHTML = nFormatter((i - 1) * Math.ceil(rangeSize)) + " - " + nFormatter(i * Math.ceil(rangeSize));
     }
 }
 
 
-function nFormatter(num, digits= 0) {
-// This function rounds 
+function nFormatter(num, digits = 0) {
+    // This function rounds 
     const lookup = [
-      { value: 1, symbol: "" },
-      { value: 1e3, symbol: "k" },
-      { value: 1e6, symbol: "M" },
-      { value: 1e9, symbol: "G" },
-      { value: 1e12, symbol: "T" },
-      { value: 1e15, symbol: "P" },
-      { value: 1e18, symbol: "E" }
+        { value: 1, symbol: "" },
+        { value: 1e3, symbol: "k" },
+        { value: 1e6, symbol: "M" },
+        { value: 1e9, symbol: "G" },
+        { value: 1e12, symbol: "T" },
+        { value: 1e15, symbol: "P" },
+        { value: 1e18, symbol: "E" }
     ];
     const regexp = /\.0+$|(?<=\.[0-9]*[1-9])0+$/;
     const item = lookup.findLast(item => num >= item.value);
     return item ? (num / item.value).toFixed(digits).replace(regexp, "").concat(item.symbol) : "0";
-  }
+}
 
 
 function showTooltip(evt, state) {
@@ -150,46 +160,12 @@ function showTooltip(evt, state) {
     X = evt.clientX - svgRect.left;
     Y = evt.clientY - svgRect.top;
 
-    tooltip1.setAttribute("x", X-35);
-    tooltip1.setAttribute("y", Y+34);
+    tooltip1.setAttribute("x", X - 35);
+    tooltip1.setAttribute("y", Y + 34);
     // tooltip.firstChild.data = mouseovertext;
     tooltip1.firstChild.data = state;
     tooltip1.setAttributeNS(null, "visibility", "visible");
 
-    // tooltip2.setAttributeNS(null, "x", evt.clientX + 18);
-    // tooltip2.setAttributeNS(null, "y", evt.clientY + 52);
-    // tooltip2.firstChild.data = "Schools with Drinking Water Facility: "+drinkingWater+"%";
-    // tooltip2.setAttributeNS(null, "visibility", "visible");
-
-    // tooltip3.setAttributeNS(null, "x", evt.clientX + 18);
-    // tooltip3.setAttributeNS(null, "y", evt.clientY + 72);
-    // tooltip3.firstChild.data = "Gross Enrolment Ratio: "+grossEnrollement;
-    // tooltip3.setAttributeNS(null, "visibility", "visible");
-
-    // tooltip4.setAttributeNS(null, "x", evt.clientX + 18);
-    // tooltip4.setAttributeNS(null, "y", evt.clientY + 92);
-    // tooltip4.firstChild.data = "Drop-out Rate: " +dropOut;
-    // tooltip4.setAttributeNS(null, "visibility", "visible");
-
-    // tooltip5.setAttributeNS(null, "x", evt.clientX + 18);
-    // tooltip5.setAttributeNS(null, "y", evt.clientY + 112);
-    // tooltip5.firstChild.data = "Schools with Computers: " +computers+ "%";
-    // tooltip5.setAttributeNS(null, "visibility", "visible");
-
-    // tooltip6.setAttributeNS(null, "x", evt.clientX + 18);
-    // tooltip6.setAttributeNS(null, "y", evt.clientY + 132);
-    // tooltip6.firstChild.data = "Schools with Electricity: " +electricity+ "%";
-    // tooltip6.setAttributeNS(null, "visibility", "visible");
-
-    // tooltip7.setAttributeNS(null, "x", evt.clientX + 18);
-    // tooltip7.setAttributeNS(null, "y", evt.clientY + 152);
-    // tooltip7.firstChild.data = "Schools with Boys' Toilets:" +boysToilet+ "%";
-    // tooltip7.setAttributeNS(null, "visibility", "visible");
-
-    // tooltip8.setAttributeNS(null, "x", evt.clientX + 18);
-    // tooltip8.setAttributeNS(null, "y", evt.clientY + 172);
-    // tooltip8.firstChild.data = "Schools with Girls' Toilets: " +girlsToilet+ "";
-    // tooltip8.setAttributeNS(null, "visibility", "visible");
 
     length = tooltip1.getComputedTextLength();
     tooltip_bg.setAttributeNS(null, "width", length + 20);
@@ -225,7 +201,7 @@ function showDataInCards(drinkingWater, grossEnrollement, computers, electricity
 
 
 function formatNumber(n) {
-// This function adds comma(,) after every three digits and returns a string
+    // This function adds comma(,) after every three digits and returns a string
     return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
@@ -233,11 +209,11 @@ function formatNumber(n) {
 function toggleSideBarVisibility() {
     var x = document.getElementById("control-section");
     if (x.style.display === "none") {
-      x.style.display = "block";
+        x.style.display = "block";
     } else {
-      x.style.display = "none";
+        x.style.display = "none";
     }
-  }
+}
 
 // Following are functions that toggle visibility of cards based on the selected filters.
 // Six similar looking functions for each checkbox 😮‍💨😩. There must be better ways of doing this.
@@ -297,8 +273,23 @@ document.getElementById("girlsToilet").onclick = function () {
 // draws it.
 function drawChart() {
 
+    let titleFontSize = 20;
+    let legendFontSize = 16;
+    let labelFontSize = 14;
+    let height = 400;
+
+
+    if (window.innerWidth < 1000){
+        titleFontSize = 30;
+        legendFontSize = 24;
+        labelFontSize = 20;
+        height = 600; 
+    }
+
     // Create the data table.
     var data = new google.visualization.DataTable();
+
+
     data.addColumn('string', 'Class Category');
     data.addColumn('number', 'Enrollment');
     data.addRows([
@@ -312,29 +303,37 @@ function drawChart() {
     // Set chart options
     var options = {
         'title': 'Students Enrollment in All Types of Management',
-        'width': 450,
-        'height': 300,
+        titleTextStyle:{
+            fontName:'arial',
+            bold:true,
+            colour: 'blue'
+        },
         'is3D': true,
-        chartArea:{
-            left:10,
-            top:30,
-            right:10,
+        chartArea: {
+            left: 10,
+            top: 60,
+            right: 10,
             bottom: 30,
-            width:'100%',
-            height:'100%'},
-        fontSize: 16,
+            width: '100%',
+            height: '100%'
+        },
+        fontSize: titleFontSize,
         legend: {
-            position: 'Center', 
+            position: 'Center',
             textStyle: {
-                color: 'black', 
-                fontSize: 14},
-            alignment: 'center'},
+                fontSize: legendFontSize,
+                bold:true
+            },
+            alignment: 'center'
+        },
         pieSliceTextStyle: {
-            color: 'white', 
-            fontSize: 14},
+            color: 'white',
+            fontSize: labelFontSize+2
+        },
         tooltip: {
-            textStyle: {fontSize: 14}, 
-            showColorCode: true},
+            textStyle: { fontSize: labelFontSize+2 },
+            showColorCode: true
+        },
         backgroundColor: "transparent",
     };
 
@@ -347,26 +346,31 @@ function drawChart() {
         'title': 'Students Enrollment in All Types of Management',
         'width': 450,
         'height': 300,
-        chartArea:{
-            left:10,
-            top:30,
-            right:10,
+        chartArea: {
+            left: 10,
+            top: 30,
+            right: 10,
             bottom: 30,
-            width:'100%',
-            height:'100%'},
+            width: '100%',
+            height: '100%'
+        },
         fontSize: 16,
         legend: {
-            position: 'Center', 
+            position: 'Center',
             textStyle: {
-                color: 'black', 
-                fontSize: 14},
-            alignment: 'center'},
+                color: 'black',
+                fontSize: 14
+            },
+            alignment: 'center'
+        },
         pieSliceTextStyle: {
-            color: 'white', 
-            fontSize: 14},
+            color: 'white',
+            fontSize: 14
+        },
         tooltip: {
-            textStyle: {fontSize: 14}, 
-            showColorCode: true},
+            textStyle: { fontSize: 14 },
+            showColorCode: true
+        },
         backgroundColor: "transparent",
         pieHole: 0.4,
     };
@@ -376,127 +380,225 @@ function drawChart() {
     // chart.draw(data, donut_options);
 
     // Bar chart visualization
-    var barchart_options = {
-        title: 'Barchart: How Much Pizza I Ate Last Night',
-        width: 700,
-        height: 300,
-        legend: 'none',
-        backgroundColor: 'transparent',
-        bars: 'vertical',
-        chartArea: {
-            top: 30,
-            right: 50, 
-            left: 120,
-            bottom: 30        
-        },
-        fontSize: 14,
-        colors: ['#110247', 'green'],
-        titleTextStyle: {
-            color: "Black",
-            fontSize: 14,
-            bold: true
-        }
-    };
-    var barchart = new google.visualization.BarChart(document.getElementById('barchart_div'));
+    // var barchart_options = {
+    //     title: 'Barchart: How Much Pizza I Ate Last Night',
+    //     width: 700,
+    //     height: 300,
+    //     legend: 'none',
+    //     backgroundColor: 'transparent',
+    //     bars: 'vertical',
+    //     chartArea: {
+    //         top: 30,
+    //         right: 50,
+    //         left: 120,
+    //         bottom: 30
+    //     },
+    //     fontSize: 14,
+    //     colors: ['#110247', 'green'],
+    //     titleTextStyle: {
+    //         color: "Black",
+    //         fontSize: 14,
+    //         bold: true
+    //     }
+    // };
+    // var barchart = new google.visualization.BarChart(document.getElementById('barchart_div'));
     // barchart.draw(data, barchart_options);
 
- 
+
+    //Area Chart Coumputer Availiablity
     var areaChartData = google.visualization.arrayToDataTable([
         ['School Type', 'Total Schools', 'Schools with computers'],
-        ['All management',  c_data.Total_Schools_All_Management,      c_data.Computers_All_Management],
-        ['Government',  c_data.Total_Schools_Govt,      c_data.Computers_Govt],
-        ['Govt. aided',  c_data.Total_Schools_Govt_Aided,       c_data.Computers_Govt_Aided],
-        ['Pvt. unaided',  c_data.Total_Schools_Pvt_Unaided,      c_data.Computers_Pvt_Unaided],
-        ['Others',  c_data.Total_Schools_Others, c_data.Computers_Others ]
+        ['All management', c_data.Total_Schools_All_Management, c_data.Computers_All_Management],
+        ['Government', c_data.Total_Schools_Govt, c_data.Computers_Govt],
+        ['Govt. aided', c_data.Total_Schools_Govt_Aided, c_data.Computers_Govt_Aided],
+        ['Pvt. unaided', c_data.Total_Schools_Pvt_Unaided, c_data.Computers_Pvt_Unaided],
+        ['Others', c_data.Total_Schools_Others, c_data.Computers_Others]
     ]);
 
     var areaChartOptions = {
+        height: height,
         title: 'Computer availability in Schools',
-        width: 750,
-        height: 300,
         titleTextStyle: {
             color: "Black",
-            fontSize: 16,
+            fontSize: titleFontSize,
             bold: true
         },
         chartArea: {
             top: 50,
-            right: 150, 
-            left: 150,
-            bottom: 60        
+            right: 200,
+            left: 100,
+            bottom: 100
+        },
+        legend: {
+            position: 'Center',
+            textStyle: {
+                fontSize: legendFontSize-4,
+                bold:true
+            },
+            alignment: 'center'
         },
         backgroundColor: 'transparent',
-        hAxis: {title: 'School types',  titleTextStyle: {color: '#333'}},
-        vAxis: {minValue: 0}
+        hAxis: { 
+            title: 'School Types', 
+            titleTextStyle: { 
+                color: '#333',
+                fontSize: labelFontSize+4,
+                fontName: 'sans-serif',
+                bold:true
+            },
+            textStyle:{
+                fontSize: labelFontSize+2
+            }
+         },
+        vAxis: { 
+            minValue: 0,
+            textStyle:{
+                fontSize: labelFontSize+2
+            }
+         }
     };
 
+    //Draw Area Chart Computer Availiablity in school
     var areaChart = new google.visualization.AreaChart(document.getElementById('area-chart'));
     areaChart.draw(areaChartData, areaChartOptions);
 
+    //data for Sc Population age-Group wise
+    var data_sc = google.visualization.arrayToDataTable([
+        ['Age Group', 'Boys', 'Girls'],
+        ['3-5', scData['Scheduled Castes (SC)-Age 3-5 - Boys'], scData['Scheduled Castes (SC)-Age 3-5 - Girls']],
+        ['6-10', scData['Scheduled Castes (SC)-Age 6-10 - Boys'], scData['Scheduled Castes (SC)-Age 6-10 - Girls']],
+        ['11-13', scData['Scheduled Castes (SC)-Age 11-13 - Boys'], scData['Scheduled Castes (SC)-Age 11-13 - Girls']],
+        ['14-15', scData['Scheduled Castes (SC)-Age 14-15 - Boys'], scData['Scheduled Castes (SC)-Age 14-15 - Girls']],
+        ['16-17', scData['Scheduled Castes (SC)-Age 16-17 - Boys'], scData['Scheduled Castes (SC)-Age 16-17 - Girls']]
+    ]);
+
+    //data for ST populatiuon age-group wise
+    var data_st = google.visualization.arrayToDataTable([
+        ['Age Group', 'Boys', 'Girls'],
+        ['3-5', stData['Scheduled Tribes (ST) - Age 3-5 - Boys'], stData['Scheduled Tribes (ST) - Age 3-5 - Girls']],
+        ['6-10', stData['Scheduled Tribes (ST) - Age 6-10 - Boys'], stData['Scheduled Tribes (ST) - Age 6-10 - Girls']],
+        ['11-13', stData['Scheduled Tribes (ST) - Age 11-13 - Boys'], stData['Scheduled Tribes (ST) - Age 11-13 - Girls']],
+        ['14-15', stData['Scheduled Tribes (ST) - Age 14-15 - Boys'], stData['Scheduled Tribes (ST) - Age 14-15 - Girls']],
+        ['16-17', stData['Scheduled Tribes (ST) - Age 16-17 - Boys'], stData['Scheduled Tribes (ST) - Age 16-17 - Girls']]
+    ]);
+
+    var options_sc = {
+        height: height,
+        fontSize: titleFontSize-4,
+        title: 'SC population by Age Group',
+        titleTextStyle: {
+            color: '#283747',
+            fontSize: titleFontSize-2,
+            bold: true
+        },
+        chart: {
+            title: 'SC population by Age Group',
+            subtitle: 'Gender Distribution',
+            alignment: 'center'
+        },
+        backgroundColor: 'transparent',
+        chartArea: {
+            backgroundColor: 'transparent'
+        },
+        bars: 'vertical',
+        legend: {
+            position: 'bottom',
+            textStyle: {
+                fontSize: legendFontSize-2,
+                bold: true
+            }
+        },
+        colors: ['#342875', '#E30B5C'],
+        hAxis: {
+            title: 'Age Group',
+            titleTextStyle: {
+                bold: true,
+                fontSize: labelFontSize+2,
+                color: '#283747'
+            },
+            textStyle: {
+                color: '#283747',
+                fontSize: labelFontSize-2,
+            }
+        },
+        vAxis:{
+            textStyle:{
+                color: '#283747',
+                fontSize: labelFontSize-1, 
+            }
+        }
+
+    };
+
+    var options_st = {
+        height: height,
+        fontSize: titleFontSize - 4,
+        title: 'ST population by Age Group',
+        titleTextStyle: {
+            color: '#283747',
+            fontSize: titleFontSize - 2,
+            bold: true
+        },
+        chart: {
+            title: 'ST population by Age Group',
+            subtitle: 'Gender Distribution',
+        },
+        backgroundColor: 'transparent',
+        chartArea: {
+            backgroundColor: 'transparent'
+        },
+        legend: {
+            textStyle: {
+                fontSize: legendFontSize-2,
+                bold: true
+            }
+        },
+        colors: ['#342875', '#E30B5C'],
+        hAxis: {
+            title: 'Age Group',
+            titleTextStyle: {
+                bold: true,
+                fontSize: labelFontSize+2,
+                color: '#283747'
+            },
+            textStyle: {
+                color: '#283747',
+                fontSize: labelFontSize-2,
+            }
+        },
+        vAxis:{
+            textStyle:{
+                color: '#283747',
+                fontSize: labelFontSize-1, 
+            }
+        }
+    };
+
+    // SC Data graph
+    var chart1 = new google.charts.Bar(document.getElementById('SC_barChart'));
+    chart1.draw(data_sc, google.charts.Bar.convertOptions(options_sc));
+
+    //ST Data Graph
+    var chart = new google.charts.Bar(document.getElementById('ST_barChart'));
+    chart.draw(data_st, google.charts.Bar.convertOptions(options_st));
+
 }
 
+// Add a resize event listener
+function handleResize() {
+    // Call the function to redraw the chart
+    drawChart();
+}
 
-
-
-// Charts testing
-// const chart1 = document.getElementById('bar-graph');
-// const chart2 = document.getElementById('histogram');
-// const chart3 = document.getElementById('pie-chart');
-
-
-// new Chart(chart1, {
-//     type: 'bar',
-//     data: {
-//         labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-//         datasets: [{
-//             label: '# of Votes',
-//             data: [12, 19, 3, 5, 2, 3],
-//             borderWidth: 1
-//         }]
-//     },
-//     options: {
-//         scales: {
-//             y: {
-//                 beginAtZero: true
-//             }
-//         }
-//     }
-// });
-
-// new Chart(chart3, {
-//     type: 'doughnut',
-//     data: {
-//         labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-//         datasets: [{
-//             label: '# of Votes',
-//             data: [12, 19, 3, 5, 2, 3],
-//             borderWidth: 1
-//         }]
-//     },
-//     options: {
-//         scales: {
-//             y: {
-//                 beginAtZero: true
-//             }
-//         }
-//     }
-// })
-
-// new Chart(chart2, {
-//     type: 'bar',
-//     data: {
-//         labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-//         datasets: [{
-//             label: '# of Votes',
-//             data: [12, 19, 3, 5, 2, 3],
-//             borderWidth: 1
-//         }]
-//     },
-//     options: {
-//         scales: {
-//             y: {
-//                 beginAtZero: true
-//             }
-//         }
-//     }
-// });
+// Listen for viewport size changes
+let lastWidth = window.innerWidth; // Store the initial width
+window.addEventListener('resize',() => {
+        const currentWidth = window.innerWidth;
+        
+        // Check if the width has changed
+        if (currentWidth !== lastWidth) {
+          lastWidth = currentWidth;
+          drawChart(); // Reload your function
+        }
+      }
+);

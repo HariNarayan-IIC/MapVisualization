@@ -57,7 +57,7 @@ path:hover {
 }
 
 .label {
-    font-size: 17px;
+    font-size: 1.5vw;
 }
 
 #border {
@@ -90,7 +90,10 @@ header {
     height: 50px;
     font-size: 2.8rem;
     border-bottom: 20px solid #292875;
-    position: relative;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: white;
 }
 
 #filters-icon {
@@ -130,9 +133,9 @@ header {
 
 #control-section {
     display: none;
-    position: absolute;
-    top: 0;
-    height: 100%;
+    position: fixed;
+    top: 100;
+    height: auto;
     /* flex-direction: column; */
     padding: 0px 5px 0px 5px;
     width: 15vw;
@@ -247,7 +250,7 @@ header {
     width: 40%;
     display: block;
     position: sticky;
-    top: 20px;
+    top: 100px;
     height: 100%;
     /* border: black solid 2px; */
     /* height: 100%; */
@@ -264,7 +267,7 @@ header {
 }
 
 #map-title {
-    font-size: 1.8rem;
+    font-size: 2.0015rem;
     font-weight: bold;
 }
 
@@ -323,7 +326,7 @@ header {
     border-radius: 10px;
     padding: 10px;
     margin: 5px;
-    min-height: 100px;
+    min-height: 70px;
     font-size: 2px;
     background-color: #282975;
     box-shadow: 3px 3px 5px #9f9f9f;
@@ -333,7 +336,7 @@ header {
     height: 60%;
     display: inline-block;
     font-weight: lighter;
-    font-size: 11.5em;
+    font-size: 9.5em;
     text-align: center;
     height: 40%;
     color: #efefef;
@@ -343,7 +346,7 @@ header {
 .value {
     display: block;
     font-weight: bolder;
-    font-size: 16em;
+    font-size: 14em;
     text-align: center;
     color: white;
     height: 60%;
@@ -357,14 +360,15 @@ header {
     justify-content: space-evenly;
 }
 
-#piee-chart {
+#pie-chart {
     display: flex;
     /* border: 2px solid #361342; */
     border-radius: 20px;
     justify-content: center;
-    width: 52%;
+    width: 80%;
+    height: 300px;
     margin: 2.5px;
-    background-color: #cfcbf388;
+    /* background-color: #cfcbf388; */
 }
 
 #barchart_div {
@@ -377,13 +381,32 @@ header {
     background-color: #cfcbf388;
 }
 
+.comboBar-Chart{
+    width: 95%;
+    /* border: 2px solid red; */
+    /* border-radius: 20px; */
+    /* background-color: #efeefb88; */
+    margin: 8px;
+}
+
+table{
+    margin: auto;
+    padding: 5px;
+}
+
+.c_barChart{
+    width: 25vw; 
+
+}
+
+
 #area-chart {
-    width: 750px;
+    width: 50vw;
     display: flex;
     /* border: 2px solid #361342; */
     border-radius: 20px;
     justify-content: center;
-    margin: 2.5px;
+    margin: 5px;
     background-color: #efeefb88;
 }
 

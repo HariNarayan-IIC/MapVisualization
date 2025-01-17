@@ -3,12 +3,17 @@
 }
 
 #control-section {
-    width: 50vw;
+    width: 30vw;
+}
+
+.checkbox-label{
+    font-size: 2.7vw;
 }
 
 .map-section{
     width: 100%;
     /* border: 2px solid blue; */
+    top: 0;
     position: relative;
     text-align: center;
 }
@@ -17,6 +22,24 @@
     width: 100%;
 }
 
+.card{
+    width: 35vw;
+    font-size: 3px;
+    min-height: 115px;
+}
+
 .h2-header{
-    font-size: 3vw;
+    font-size: 5vw;
+}
+
+.c_barChart{
+    width: 45vw; 
+}
+
+#pie-chart{
+    height: 500px;
+}
+
+#area-chart {
+    width: 100vw;
 }

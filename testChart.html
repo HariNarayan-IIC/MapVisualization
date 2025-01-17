@@ -36,6 +36,7 @@
 
         function drawChart() {
             // console.log(scData[id]['Scheduled Castes (SC)-Age 3-5 - Boys'])
+            //data for Sc Population age-Group wise
             var data_sc = google.visualization.arrayToDataTable([
                 ['Age Group', 'Boys', 'Girls'],
                 ['Age 3-5', scData[s_id]['Scheduled Castes (SC)-Age 3-5 - Boys'], scData[s_id]['Scheduled Castes (SC)-Age 3-5 - Girls']],
@@ -45,6 +46,7 @@
                 ['Age 16-17', scData[s_id]['Scheduled Castes (SC)-Age 16-17 - Boys'], scData[s_id]['Scheduled Castes (SC)-Age 16-17 - Girls']]
             ]);
 
+            //data for ST populatiuon age-group wise
             var data_st = google.visualization.arrayToDataTable([
                 ['Age Group', 'Boys', 'Girls'],
                 ['Age 3-5', stData[s_id]['Scheduled Tribes (ST) - Age 3-5 - Boys'], stData[s_id]['Scheduled Tribes (ST) - Age 3-5 - Girls']],
