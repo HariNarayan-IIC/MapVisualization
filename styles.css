@@ -410,6 +410,17 @@ table{
 }
 
 
+/* footer Section Styling */
+footer{
+    background-color: #342875;
+    color: #fff;
+    text-align: center;
+    height: 5vh;
+}
+
+.footer-section{
+    line-height: 5vh;
+}
 
 
 /* ================================================================================= */
