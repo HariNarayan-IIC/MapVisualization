@@ -1,3 +1,13 @@
+header {
+    height: 100px;
+    font-size: 3.2rem;
+}
+
+#filters-icon { 
+    top: 30px;
+    font-size: 4rem;
+}
+
 .container {
     flex-direction: column;
 }

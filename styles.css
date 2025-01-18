@@ -132,7 +132,6 @@ header {
 /* control sidebar Styling */
 
 #control-section {
-    display: none;
     position: fixed;
     top: 100;
     height: auto;
