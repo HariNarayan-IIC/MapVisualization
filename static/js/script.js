@@ -40,12 +40,12 @@ async function init(evt) {
         svgDocument = evt.target.ownerDocument;
     }
 
-    schoolData = await loadData('SchoolData.json');
-    computersData = await loadData('ComputersData.json');
+    schoolData = await loadData('static/data/SchoolData.json');
+    computersData = await loadData('static/data/ComputersData.json');
 
-    let sc_data = await loadData("SC_School_data.json");
+    let sc_data = await loadData("static/data/SC_School_data.json");
 
-    let st_data = await loadData("ST_School_data.json");
+    let st_data = await loadData("static/data/ST_School_data.json");
 
 
 
