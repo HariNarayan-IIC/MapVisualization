@@ -4,18 +4,24 @@
 <head>
     <title>India Interactive SVG Map</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-    <link href="styles.css" rel="stylesheet">
-    <link rel="stylesheet" media="screen and (max-width:1000px)" href="style-mobile.css" >
+    <link href="static/css/styles.css" rel="stylesheet">
+    <link href="static/css/teachers-styles.css" rel="stylesheet">
+    <link rel="stylesheet" media="screen and (max-width:1000px)" href="static/css/style-mobile.css" >
 </head>
 
 <body>
     <header>
         <div >
-            <i id="filters-icon" class="material-icons" onclick="toggleSideBarVisibility()">
-                tune
-            </i>
-        </div>
-        <div>Teachers Dashbaord</div>
+            <div id="dashboard-options">
+                <i id="filters-icon" class="material-icons" onclick="toggleSideBarVisibility()">tune</i>
+                <select id="dashboard-selector" onchange="dashboardChanger()">
+                    <option>Schools</option>
+                    <option>Students</option>
+                    <option selected>Teachers</option>
+                </select>
+            </div>
+        </div>  
+        <div id="title">Teachers Dashbaord (State-wise)</div>
         
     </header>
 
@@ -211,23 +217,6 @@
                     </div>
                 </div>
 
-                <div class="card" id="card-4">
-                    <div class="title">
-                        Schools with Boys' Toilets:
-                    </div>
-                    <div class="value">
-                        -
-                    </div>
-                </div>
-
-                <div class="card" id="card-5">
-                    <div class="title">
-                        Schools with Girls' Toilets:
-                    </div>
-                    <div class="value">
-                        -
-                    </div>
-                </div>
             </div>
 
             <!-- Chart container -->
@@ -240,7 +229,7 @@
                 <!-- <div id="donut-chart"></div>  -->
 
                 <!-- Div that will hold the combo bar chart  -->
-                 <div class="comboBar-Chart">
+                 <!-- <div class="comboBar-Chart">
                      <table>
                          <tr>
                              <td>
@@ -251,10 +240,10 @@
                              </td>
                          </tr>
                      </table>
-                 </div>
+                 </div> -->
 
                 <!-- Div that will hold the area chart  -->
-                <div id="area-chart" ></div>
+                <div id="bar-chart" ></div>
                 
 
 
@@ -271,7 +260,7 @@
 
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="/script.js"></script>
+    <script src="static/js//script.js"></script>
 </body>
 
 </html>

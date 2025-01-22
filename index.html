@@ -11,11 +11,16 @@
 <body>
     <header>
         <div >
-            <i id="filters-icon" class="material-icons" onclick="toggleSideBarVisibility()">
-                tune
-            </i>
-        </div>
-        <div>School Dashbaord</div>
+            <div id="dashboard-options">
+                <i id="filters-icon" class="material-icons" onclick="toggleSideBarVisibility()">tune</i>
+                <select id="dashboard-selector" onchange="dashboardChanger()">
+                    <option>Schools</option>
+                    <option>Students</option>
+                    <option>Teachers</option>
+                </select>
+            </div>
+        </div>  
+        <div id="title">School Dashbaord (State-wise)</div>
         
     </header>
 

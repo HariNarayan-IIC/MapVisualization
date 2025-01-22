@@ -1,6 +1,16 @@
+:root {
+    --color0: #efeefb;
+    --color1: #cfcbf3;
+    --color2: #9d98e8;
+    --color3: #6860dc;
+    --color4: #533fac; 
+    --color5: #342875; 
+}
+
+
 /* CSS copied for map */
 
-#title {
+#map-title {
     font-size: 25px;
     fill: black;
 }
@@ -96,16 +106,24 @@ header {
     background-color: white;
 }
 
-#filters-icon {
+#dashboard-options {
     position: absolute;
-    left: 20px;
-    top: 20px;
+    top: 20px; left: 20px;
+    display: flex;
+}
+
+#filters-icon {
     font-size: 2rem;
     cursor: pointer;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+}
+
+#dashboard-selector{
+    font-size: 1.5rem;
+    margin-left: 1em;
 }
 
 

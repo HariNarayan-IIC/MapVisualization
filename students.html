@@ -4,18 +4,23 @@
 <head>
     <title>India Interactive SVG Map</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-    <link href="styles.css" rel="stylesheet">
-    <link rel="stylesheet" media="screen and (max-width:1000px)" href="style-mobile.css" >
+    <link href="static/css/styles.css" rel="stylesheet">
+    <link rel="stylesheet" media="screen and (max-width:1000px)" href="static/css/style-mobile.css" >
 </head>
 
 <body>
     <header>
         <div >
-            <i id="filters-icon" class="material-icons" onclick="toggleSideBarVisibility()">
-                tune
-            </i>
-        </div>
-        <div>Student Dashbaord</div>
+            <div id="dashboard-options">
+                <i id="filters-icon" class="material-icons" onclick="toggleSideBarVisibility()">tune</i>
+                <select id="dashboard-selector" onchange="dashboardChanger()">
+                    <option>Schools</option>
+                    <option selected>Students</option>
+                    <option>Teachers</option>
+                </select>
+            </div>
+        </div>  
+        <div id="title">Students Dashbaord (State-wise)</div>
         
     </header>
 
@@ -271,7 +276,7 @@
 
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="/script.js"></script>
+    <script src="static/js//script.js"></script>
 </body>
 
 </html>

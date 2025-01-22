@@ -17,6 +17,8 @@ let computersData;
 let c_data;
 
 let scData, s_id, stData;
+let sc_data, st_data;
+let teachersData;
 
 
 
@@ -25,13 +27,16 @@ function loadData(filePath) {
         fetch(filePath)
             .then(response => response.json())
             .then(data => {
-                resolve(data);
+                resolve(data)
+                
                 // console.log(data[0].State); // JSON data from the file
             })
-            .catch(error => console.error('Error fetching JSON:', error));
+            .catch(error => {
+                console.error('Error fetching JSON:', error);
+                reject({});
+            });
     })
 }
-
 
 
 
@@ -42,11 +47,9 @@ async function init(evt) {
 
     schoolData = await loadData('static/data/SchoolData.json');
     computersData = await loadData('static/data/ComputersData.json');
-
-    let sc_data = await loadData("static/data/SC_School_data.json");
-
-    let st_data = await loadData("static/data/ST_School_data.json");
-
+    sc_data = await loadData("static/data/SC_School_data.json");
+    st_data = await loadData("static/data/ST_School_data.json");
+    teachersData = await loadData('static/data/TeachersData.json');
 
 
     let maxValue = await schoolData.reduce((max, obj) => Math.max(max, obj.grossEnrollement), -Infinity);
@@ -105,7 +108,6 @@ async function init(evt) {
 
     showHeatMapLabel(maxValue);
 }
-
 
 
 function colourState(id, data, max) {
@@ -174,21 +176,17 @@ function showTooltip(evt, state) {
     tooltip_bg.setAttributeNS(null, "visibility", "visibile");
 }
 
+
 function hideTooltip(evt) {
     tooltip1.setAttributeNS(null, "visibility", "hidden");
-    // tooltip2.setAttributeNS(null, "visibility", "hidden");
-    // tooltip3.setAttributeNS(null, "visibility", "hidden");
-    // tooltip4.setAttributeNS(null, "visibility", "hidden");
-    // tooltip5.setAttributeNS(null, "visibility", "hidden");
-    // tooltip6.setAttributeNS(null, "visibility", "hidden");
-    // tooltip7.setAttributeNS(null, "visibility", "hidden");
-    // tooltip8.setAttributeNS(null, "visibility", "hidden");
     tooltip_bg.setAttributeNS(null, "visibility", "hidden");
 }
+
 
 function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
+
 
 function showDataInCards(drinkingWater, grossEnrollement, computers, electricity, boysToilet, girlsToilet) {
     document.querySelector("#card-0 .value").innerHTML = drinkingWater + "%";
@@ -205,15 +203,31 @@ function formatNumber(n) {
     return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
-// Following funtion toggles the visibility of sidebar
+
 function toggleSideBarVisibility() {
-    var x = document.getElementById("control-section");
+    // Following funtion toggles the visibility of sidebar
+    let x = document.getElementById("control-section");
     if (x.style.display === "none") {
         x.style.display = "block";
     } else {
         x.style.display = "none";
     }
 }
+
+function dashboardChanger() {
+    let x = document.getElementById("dashboard-selector");
+    if (x.value == "Schools"){
+        location.replace("index.html");
+
+    }
+    if (x.value == "Students"){
+        location.replace("students.html");
+    }
+    if (x.value == "Teachers") {
+        location.replace("teachers.html");
+    }
+}
+
 
 // Following are functions that toggle visibility of cards based on the selected filters.
 // Six similar looking functions for each checkbox 😮‍💨😩. There must be better ways of doing this.
