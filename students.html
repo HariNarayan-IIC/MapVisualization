@@ -5,6 +5,7 @@
     <title>India Interactive SVG Map</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
     <link href="static/css/styles.css" rel="stylesheet">
+    <link href="static/css/students-styles.css" rel="stylesheet">
     <link rel="stylesheet" media="screen and (max-width:1000px)" href="static/css/style-mobile.css" >
 </head>
 
@@ -20,7 +21,7 @@
                 </select>
             </div>
         </div>  
-        <div id="title">Students Dashbaord (State-wise)</div>
+        <div id="title">Students Dashbaord</div>
         
     </header>
 
@@ -42,31 +43,12 @@
             <h2 class="h2-header">Filters</h2>
 
 
-            <label class="checkbox-label">Percentage of schools with Drinking Water
-                <input type="checkbox" checked="checked" id="drinkingWater">
+
+            <label class="checkbox-label">Total Students
+                <input type="checkbox" checked="checked" id="totalStudents">
                 <span class="checkmark"></span>
             </label>
-            <label class="checkbox-label">Gross Enrollement
-                <input type="checkbox" checked="checked" id="grossEnrollement">
-                <span class="checkmark"></span>
-            </label>
-            <label class="checkbox-label">Percentage of schools with computers
-                <input type="checkbox" checked="checked" id="computers">
-                <span class="checkmark"></span>
-            </label>
-            <label class="checkbox-label">Percentage of schools with electricity
-                <input type="checkbox" checked="checked" id="electricity">
-                <span class="checkmark"></span>
-            </label>
-            <label class="checkbox-label">Percentage of schools with boys' toilet
-                <input type="checkbox" checked="checked" id="boysToilet">
-                <span class="checkmark"></span>
-            </label>
-            <label class="checkbox-label">Percentage of schools with girls' toilet
-                <input type="checkbox" checked="checked" id="girlsToilet">
-                <span class="checkmark"></span>
-            </label>
-        </div>
+
     </section>
 
         <!-- Map -->
@@ -144,14 +126,15 @@
                 <text id="map-title" x="350" y="40">Students Enrollement</text>
 
                 <g x="200" y="300">
-                        <text class="label" x="400" y="600">Indian States by Students</text>
+                        <text class="label" x="400" y="600">Indian States by</text>
+                        <text class="label" x="400" y="620">number of Students</text>
 
                         <!-- <rect x="400" y="600" width="20" height="20" class="colour0" /> -->
-                        <rect x="400" y="625" width="20" height="20" class="colour1" />
-                        <rect x="400" y="650" width="20" height="20" class="colour2" />
-                        <rect x="400" y="675" width="20" height="20" class="colour3" />
-                        <rect x="400" y="700" width="20" height="20" class="colour4" />
-                        <rect x="400" y="725" width="20" height="20" class="colour5" />
+                        <rect x="400" y="625" width="20" height="20" class="colour1" style="stroke-width:1;stroke:black"/>
+                        <rect x="400" y="650" width="20" height="20" class="colour2" style="stroke-width:1;stroke:black"/>
+                        <rect x="400" y="675" width="20" height="20" class="colour3" style="stroke-width:1;stroke:black"/>
+                        <rect x="400" y="700" width="20" height="20" class="colour4" style="stroke-width:1;stroke:black"/>
+                        <rect x="400" y="725" width="20" height="20" class="colour5" style="stroke-width:1;stroke:black"/>
 
                         <!-- <text x="425" y="615"> &gt; 200M</text> -->
                         <text x="425" y="640" id="range1"></text>
@@ -180,59 +163,18 @@
             </div>
             <div class="cards-container">   
                 <!-- Information Card (Multiple cards containing informaiton) -->
+
+
                 <div class="card" id="card-0">
                     <div class="title">
-                        Schools with Drinking Water Facility:
+                        Total Students (2021-22):
                     </div>
                     <div class="value">
                         -
                     </div>
                 </div>
 
-                <div class="card" id="card-1">
-                    <div class="title">
-                        Total Enrollement (2021-22):
-                    </div>
-                    <div class="value">
-                        -
-                    </div>
-                </div>
-
-                <div class="card" id="card-2">
-                    <div class="title">
-                        Schools with Computers:
-                    </div>
-                    <div class="value">
-                        -
-                    </div>
-                </div>
-
-                <div class="card" id="card-3">
-                    <div class="title">
-                        Schools with Electricity:
-                    </div>
-                    <div class="value">
-                        -
-                    </div>
-                </div>
-
-                <div class="card" id="card-4">
-                    <div class="title">
-                        Schools with Boys' Toilets:
-                    </div>
-                    <div class="value">
-                        -
-                    </div>
-                </div>
-
-                <div class="card" id="card-5">
-                    <div class="title">
-                        Schools with Girls' Toilets:
-                    </div>
-                    <div class="value">
-                        -
-                    </div>
-                </div>
+                
             </div>
 
             <!-- Chart container -->
@@ -276,7 +218,7 @@
 
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="static/js//script.js"></script>
+    <script src="static/js/studentsDashboardScript.js"></script>
 </body>
 
 </html>

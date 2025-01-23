@@ -27,27 +27,27 @@
 }
 
 .colour5 {
-    fill: #342875;
+    fill: var(--color5);
 }
 
 .colour4 {
-    fill: #533fac;
+    fill: var(--color4);
 }
 
 .colour3 {
-    fill: #6860dc;
+    fill: var(--color3);
 }
 
 .colour2 {
-    fill: #9d98e8;
+    fill: var(--color2);
 }
 
 .colour1 {
-    fill: #cfcbf3;
+    fill: var(--color1);
 }
 
 .colour0 {
-    fill: #efeefb;
+    fill: var(--color0);
 }
 
 path:hover {
@@ -94,12 +94,13 @@ body {
 /* ================================================================================= */
 header {
     padding: 10px;
-    display: flex;
+    display: grid;
+    grid-template-columns: 25% 50% 25%;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     height: 50px;
     font-size: 2.8rem;
-    border-bottom: 20px solid #292875;
+    border-bottom: 20px solid var(--color5);
     position: sticky;
     top: 0;
     z-index: 100;
@@ -107,9 +108,12 @@ header {
 }
 
 #dashboard-options {
-    position: absolute;
-    top: 20px; left: 20px;
     display: flex;
+    align-items: center;
+}
+
+#title {
+    justify-self: center;
 }
 
 #filters-icon {
@@ -157,8 +161,8 @@ header {
     padding: 0px 5px 0px 5px;
     width: 15vw;
     border-radius: 0px 30px 30px 0px;
-    border: #131842 solid 2px;
-    background-color: #efeefb;
+    border: var(--color5) solid 2px;
+    background-color: rgb(from var(--color0) r g b/0.9);
     z-index: 2;
 }
 
@@ -212,7 +216,7 @@ header {
     left: 0;
     height: 25px;
     width: 25px;
-    border: 2px solid #010247;
+    border: 2px solid var(--color5);
     background-color: #eee;
 }
 
@@ -223,7 +227,7 @@ header {
 
 /* When the checkbox is checked, add a blue background */
 .checkbox-label input:checked~.checkmark {
-    background-color: #161342;
+    background-color: var(--color5);
 }
 
 /* Create the checkmark/indicator (hidden when not checked) */
@@ -313,9 +317,9 @@ header {
 .details_header{
     /* border: 2px solid blue; */
     border-radius: 0px 0px 20px 20px;
-    background-color: #4d4fc2;
+    background-color: var(--color3);
     color: #f1f1f1;
-    text-shadow: 0 0 10px #010247;
+    text-shadow: 0 0 10px var(--color5);
 }
 
 .cards-container {
@@ -345,7 +349,7 @@ header {
     margin: 5px;
     min-height: 70px;
     font-size: 2px;
-    background-color: #282975;
+    background-color: var(--color5);
     box-shadow: 3px 3px 5px #9f9f9f;
 }
 
@@ -395,7 +399,7 @@ header {
     border-radius: 20px;
     justify-content: center;
     margin: 2.5px;
-    background-color: #cfcbf388;
+    background-color: var(--color0);
 }
 
 .comboBar-Chart{
@@ -424,13 +428,13 @@ table{
     border-radius: 20px;
     justify-content: center;
     margin: 5px;
-    background-color: #efeefb88;
+    background-color: rgb(from var(--color0) r g b / 0.5);
 }
 
 
 /* footer Section Styling */
 footer{
-    background-color: #342875;
+    background-color: var(--color5);
     color: #fff;
     text-align: center;
     height: 5vh;

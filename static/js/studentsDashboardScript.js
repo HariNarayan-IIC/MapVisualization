@@ -51,7 +51,7 @@ async function init(evt) {
     st_data = await loadData("static/data/ST_School_data.json");
 
 
-    let maxValue = await schoolData.reduce((max, obj) => Math.max(max, obj.totalSchools), -Infinity);
+    let maxValue = await schoolData.reduce((max, obj) => Math.max(max, obj.grossEnrollement), -Infinity);
     let x = (String(maxValue).length) - 1;
     maxValue = Math.ceil(maxValue / 10 ** x) * (10 ** x);
 
@@ -84,12 +84,7 @@ async function init(evt) {
 
             document.getElementById("state_title").innerHTML = details.state;
             showDataInCards(
-                details.drinkingWater,
-                details.totalSchools,
-                details.computers,
-                details.electricity,
-                details.boysToilet,
-                details.girlsToilet
+                details.grossEnrollement
             )
             pp = Number(details.Pre_Primary);
             p = Number(details.Primary);
@@ -100,7 +95,7 @@ async function init(evt) {
             google.charts.setOnLoadCallback(drawChart)
         };
 
-        let data = await schoolData.find(item => item.id === ids[i]).totalSchools;
+        let data = await schoolData.find(item => item.id === ids[i]).grossEnrollement;
         colourState(ids[i], data, maxValue)
 
     }
@@ -187,13 +182,9 @@ function capitalizeFirstLetter(string) {
 }
 
 
-function showDataInCards(drinkingWater, grossEnrollement, computers, electricity, boysToilet, girlsToilet, maleTeachers, femaleTeachers) {
-    document.querySelector("#card-0 .value").innerHTML = drinkingWater + "%";
-    document.querySelector("#card-1 .value").innerHTML = formatNumber(grossEnrollement);
-    document.querySelector("#card-2 .value").innerHTML = computers + "%";
-    document.querySelector("#card-3 .value").innerHTML = electricity + "%";
-    document.querySelector("#card-4 .value").innerHTML = formatNumber(boysToilet);
-    document.querySelector("#card-5 .value").innerHTML = formatNumber(girlsToilet);
+function showDataInCards(totalStudents) {
+    document.querySelector("#card-0 .value").innerHTML = formatNumber(totalStudents);
+
 }
 
 
@@ -216,31 +207,12 @@ function toggleSideBarVisibility() {
 function dashboardChanger() {
     let x = document.getElementById("dashboard-selector");
     if (x.value == "Schools"){
-        document.documentElement.style.setProperty('--color0', "#efeefb")
-        document.documentElement.style.setProperty('--color1', "#cfcbf3")
-        document.documentElement.style.setProperty('--color2', "#9d98e8")
-        document.documentElement.style.setProperty('--color3', "#6860dc")
-        document.documentElement.style.setProperty('--color4', "#533fac")
-        document.documentElement.style.setProperty('--color5', "#342875")
         location.replace("index.html");
-
     }
     if (x.value == "Students"){
-        document.documentElement.style.setProperty('--color0', "#")
-        document.documentElement.style.setProperty('--color1', "#")
-        document.documentElement.style.setProperty('--color2', "#")
-        document.documentElement.style.setProperty('--color3', "#")
-        document.documentElement.style.setProperty('--color4', "#")
-        document.documentElement.style.setProperty('--color5', "#")
         location.replace("students.html");
     }
     if (x.value == "Teachers") {
-        // document.documentElement.style.setProperty('--color0', "#fce4ec")
-        // document.documentElement.style.setProperty('--color1', "#f8bbd0")
-        // document.documentElement.style.setProperty('--color2', "#f06292")
-        // document.documentElement.style.setProperty('--color3', "#ec407a")
-        // document.documentElement.style.setProperty('--color4', "#d81b60")
-        // document.documentElement.style.setProperty('--color5', "#880e4f")
         location.replace("teachers.html");
     }
 }
@@ -248,53 +220,16 @@ function dashboardChanger() {
 
 // Following are functions that toggle visibility of cards based on the selected filters.
 // Six similar looking functions for each checkbox 😮‍💨😩. There must be better ways of doing this.
-document.getElementById("drinkingWater").onclick = function () {
-    if (document.getElementById("drinkingWater").checked) {
+
+
+document.getElementById("grossEnrollement").onclick = function () {
+    if (document.getElementById("totalStudents").checked) {
         document.getElementById("card-0").style.display = "block"
     } else {
         document.getElementById("card-0").style.display = "none";
     }
 }
 
-document.getElementById("grossEnrollement").onclick = function () {
-    if (document.getElementById("grossEnrollement").checked) {
-        document.getElementById("card-1").style.display = "block"
-    } else {
-        document.getElementById("card-1").style.display = "none";
-    }
-}
-
-document.getElementById("computers").onclick = function () {
-    if (document.getElementById("computers").checked) {
-        document.getElementById("card-2").style.display = "block"
-    } else {
-        document.getElementById("card-2").style.display = "none";
-    }
-}
-
-document.getElementById("electricity").onclick = function () {
-    if (document.getElementById("electricity").checked) {
-        document.getElementById("card-3").style.display = "block"
-    } else {
-        document.getElementById("card-3").style.display = "none";
-    }
-}
-
-document.getElementById("boysToilet").onclick = function () {
-    if (document.getElementById("boysToilet").checked) {
-        document.getElementById("card-4").style.display = "block"
-    } else {
-        document.getElementById("card-4").style.display = "none";
-    }
-}
-
-document.getElementById("girlsToilet").onclick = function () {
-    if (document.getElementById("girlsToilet").checked) {
-        document.getElementById("card-5").style.display = "block"
-    } else {
-        document.getElementById("card-5").style.display = "none";
-    }
-}
 
 
 //script for creating Google charts//////////////////////////////////////////////////////////////////////////////////////
@@ -357,6 +292,8 @@ function drawChart() {
             },
             alignment: 'center'
         },
+
+        // colors: ['#ffcdb2', '#ffb4a2', '#e5989b', '#b5838d', '#6d6875'],
         pieSliceTextStyle: {
             color: 'white',
             fontSize: labelFontSize+2
@@ -372,126 +309,8 @@ function drawChart() {
     var chart = new google.visualization.PieChart(document.getElementById('pie-chart'));
     chart.draw(data, options);
 
-    //donut chart option and features
-    var donut_options = {
-        'title': 'Students Enrollment in All Types of Management',
-        'width': 450,
-        'height': 300,
-        chartArea: {
-            left: 10,
-            top: 30,
-            right: 10,
-            bottom: 30,
-            width: '100%',
-            height: '100%'
-        },
-        fontSize: 16,
-        legend: {
-            position: 'Center',
-            textStyle: {
-                color: 'black',
-                fontSize: 14
-            },
-            alignment: 'center'
-        },
-        pieSliceTextStyle: {
-            color: 'white',
-            fontSize: 14
-        },
-        tooltip: {
-            textStyle: { fontSize: 14 },
-            showColorCode: true
-        },
-        backgroundColor: "transparent",
-        pieHole: 0.4,
-    };
-
-    //Donut chart Visualization
-    // var chart = new google.visualization.PieChart(document.getElementById('donut-chart'));
-    // chart.draw(data, donut_options);
-
-    // Bar chart visualization
-    // var barchart_options = {
-    //     title: 'Barchart: How Much Pizza I Ate Last Night',
-    //     width: 700,
-    //     height: 300,
-    //     legend: 'none',
-    //     backgroundColor: 'transparent',
-    //     bars: 'vertical',
-    //     chartArea: {
-    //         top: 30,
-    //         right: 50,
-    //         left: 120,
-    //         bottom: 30
-    //     },
-    //     fontSize: 14,
-    //     colors: ['#110247', 'green'],
-    //     titleTextStyle: {
-    //         color: "Black",
-    //         fontSize: 14,
-    //         bold: true
-    //     }
-    // };
-    // var barchart = new google.visualization.BarChart(document.getElementById('barchart_div'));
-    // barchart.draw(data, barchart_options);
-
-
-    //Area Chart Coumputer Availiablity
-    var areaChartData = google.visualization.arrayToDataTable([
-        ['School Type', 'Total Schools', 'Schools with computers'],
-        ['All management', c_data.Total_Schools_All_Management, c_data.Computers_All_Management],
-        ['Government', c_data.Total_Schools_Govt, c_data.Computers_Govt],
-        ['Govt. aided', c_data.Total_Schools_Govt_Aided, c_data.Computers_Govt_Aided],
-        ['Pvt. unaided', c_data.Total_Schools_Pvt_Unaided, c_data.Computers_Pvt_Unaided],
-        ['Others', c_data.Total_Schools_Others, c_data.Computers_Others]
-    ]);
-
-    var areaChartOptions = {
-        height: height,
-        title: 'Computer availability in Schools',
-        titleTextStyle: {
-            color: "Black",
-            fontSize: titleFontSize,
-            bold: true
-        },
-        chartArea: {
-            top: 50,
-            right: 200,
-            left: 100,
-            bottom: 100
-        },
-        legend: {
-            position: 'Center',
-            textStyle: {
-                fontSize: legendFontSize-4,
-                bold:true
-            },
-            alignment: 'center'
-        },
-        backgroundColor: 'transparent',
-        hAxis: { 
-            title: 'School Types', 
-            titleTextStyle: { 
-                color: '#333',
-                fontSize: labelFontSize+4,
-                fontName: 'sans-serif',
-                bold:true
-            },
-            textStyle:{
-                fontSize: labelFontSize+2
-            }
-         },
-        vAxis: { 
-            minValue: 0,
-            textStyle:{
-                fontSize: labelFontSize+2
-            }
-         }
-    };
-
-    //Draw Area Chart Computer Availiablity in school
-    var areaChart = new google.visualization.AreaChart(document.getElementById('area-chart'));
-    areaChart.draw(areaChartData, areaChartOptions);
+    
+    
 
     //data for Sc Population age-Group wise
     var data_sc = google.visualization.arrayToDataTable([
