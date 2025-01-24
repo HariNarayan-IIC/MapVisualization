@@ -11,6 +11,10 @@ header {
     font-size: 4vw;
 }
 
+#title {
+    font-weight: bold;
+}
+
 #dashboard-selector{
     font-size: 2.5rem;
 }
